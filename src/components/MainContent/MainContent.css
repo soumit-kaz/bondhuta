@@ -1,0 +1,192 @@
+.main-content {
+  flex: 1;
+  padding: 32px 48px;
+  max-width: 900px;
+  overflow-y: auto;
+}
+
+.content-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 24px 0;
+}
+
+.content-body {
+  line-height: 1.8;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 24px 0;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.blog-content {
+  font-size: 1.1rem;
+  color: #374151;
+}
+
+.blog-content p {
+  margin: 0 0 20px 0;
+}
+
+.blog-content h2 {
+  font-size: 1.4rem;
+  color: #1f2937;
+  margin: 32px 0 16px;
+}
+
+.blog-content h3 {
+  font-size: 1.2rem;
+  color: #1f2937;
+  margin: 0 0 12px;
+}
+
+.blog-content ul {
+  margin: 0 0 20px 0;
+  padding-left: 24px;
+}
+
+.blog-content li {
+  margin-bottom: 8px;
+}
+
+.intro-text {
+  font-size: 1.15rem;
+  color: #4b5563;
+  background: #f9fafb;
+  padding: 16px 20px;
+  border-radius: 8px;
+  border-left: 4px solid #3b82f6;
+}
+
+.highlight-text {
+  color: #1d4ed8;
+  font-size: 1.1rem;
+  font-weight: 500;
+  background: #eff6ff;
+  padding: 16px 20px;
+  border-radius: 8px;
+}
+
+.blog-content strong {
+  color: #1d4ed8;
+}
+
+/* Dialog boxes */
+.dialog-box {
+  padding: 16px 20px;
+  border-radius: 12px;
+  margin: 16px 0;
+  position: relative;
+}
+
+.dialog-box.motu {
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  margin-right: 40px;
+}
+
+.dialog-box.votu {
+  background: #fce7f3;
+  border-left: 4px solid #ec4899;
+  margin-left: 40px;
+}
+
+.dialog-name {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.dialog-box.motu .dialog-name {
+  color: #b45309;
+}
+
+.dialog-box.votu .dialog-name {
+  color: #be185d;
+}
+
+.dialog-box p {
+  margin: 0;
+  font-style: italic;
+}
+
+/* Concept box */
+.concept-box {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 1px solid #86efac;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+
+.concept-box h3 {
+  color: #166534;
+}
+
+.concept-box ul {
+  margin: 0;
+}
+
+.concept-box li {
+  color: #15803d;
+}
+
+/* Code box */
+.code-box {
+  background: #1e293b;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  overflow-x: auto;
+}
+
+.code-box code,
+.code-box pre {
+  color: #e2e8f0;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9rem;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.blog-content code {
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 0.85em;
+}
+
+/* Coming soon */
+.coming-soon-box {
+  text-align: center;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 16px;
+  margin: 40px 0;
+}
+
+.coming-soon-box p {
+  font-size: 1.2rem;
+  margin: 12px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 20px;
+  }
+
+  .dialog-box.motu,
+  .dialog-box.bothu {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
