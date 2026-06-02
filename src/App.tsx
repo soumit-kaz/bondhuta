@@ -33,14 +33,8 @@ function App() {
 
           {/* Neural Network Series */}
           <Route path="neural-network/intro" element={<NeuralNetworkIntro />} />
-          <Route path="neural-network/perceptron" element={<ComingSoon />} />
-          <Route path="neural-network/activation" element={<ComingSoon />} />
-          <Route path="neural-network/mlp" element={<ComingSoon />} />
-          <Route path="neural-network/backprop" element={<ComingSoon />} />
-          <Route path="neural-network/training" element={<ComingSoon />} />
 
-          {/* Other */}
-          <Route path="vater-alap" element={<ComingSoon />} />
+          {/* Fallback */}
           <Route path="*" element={<ComingSoon />} />
         </Route>
       </Routes>

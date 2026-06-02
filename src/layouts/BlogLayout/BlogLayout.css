@@ -14,3 +14,11 @@
 .content-body {
   line-height: 1.8;
 }
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 20px 16px;
+    padding-top: 72px; /* clear the fixed 56px mobile top bar */
+    max-width: 100%;
+  }
+}

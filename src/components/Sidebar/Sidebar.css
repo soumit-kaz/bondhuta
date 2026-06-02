@@ -11,6 +11,44 @@
   top: 0;
 }
 
+/* Mobile top bar + hamburger — hidden on desktop */
+.mobile-topbar {
+  display: none;
+}
+
+.mobile-menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: #1f2937;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.mobile-menu-toggle:hover {
+  background-color: #f3f4f6;
+}
+
+.mobile-topbar-logo {
+  width: 28px;
+  height: 28px;
+}
+
+.mobile-topbar-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
 .sidebar-header {
   display: flex;
   align-items: center;
@@ -115,4 +153,58 @@
 
 .sidebar::-webkit-scrollbar-thumb:hover {
   background-color: #9ca3af;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    padding: 0 12px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 1100;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    max-width: 85vw;
+    z-index: 1200;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1150;
+  }
+
+  /* Larger tap targets for touch */
+  .nav-link {
+    padding: 14px 16px;
+    font-size: 1rem;
+  }
+
+  .nav-link.sub-item {
+    padding-left: 32px;
+    font-size: 0.95rem;
+  }
 }

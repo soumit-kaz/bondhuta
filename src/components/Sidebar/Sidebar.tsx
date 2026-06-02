@@ -12,53 +12,25 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   {
-    id: 'docker',
-    title: 'Docker সিরিজ',
-    children: [
-      { id: 'docker-intro', title: 'Docker: মোটু টু ভতু', path: '/docker/intro' },
-      { id: 'docker-basics', title: 'Docker এর বেসিক্স', path: '/docker/basics' },
-      { id: 'docker-images', title: 'Docker Images', path: '/docker/images' },
-      { id: 'docker-containers', title: 'Containers চালানো', path: '/docker/containers' },
-      { id: 'docker-compose', title: 'Docker Compose', path: '/docker/compose' },
-      { id: 'docker-networking', title: 'Docker Networking', path: '/docker/networking' },
-      { id: 'docker-volumes', title: 'Volumes ও Data', path: '/docker/volumes' },
-    ],
-  },
-  {
-    id: 'redis',
-    title: 'Redis সিরিজ',
-    children: [
-      { id: 'redis-intro', title: 'Redis পরিচিতি', path: '/redis/intro' },
-      { id: 'redis-data-types', title: 'Data Types', path: '/redis/data-types' },
-      { id: 'redis-commands', title: 'Redis Commands', path: '/redis/commands' },
-      { id: 'redis-caching', title: 'Caching with Redis', path: '/redis/caching' },
-      { id: 'redis-pubsub', title: 'Pub/Sub', path: '/redis/pubsub' },
-      { id: 'redis-persistence', title: 'Persistence', path: '/redis/persistence' },
-    ],
-  },
-  {
     id: 'neural-network',
     title: 'Neural Network সিরিজ',
     children: [
       { id: 'nn-intro', title: 'একটা Neuron-এর গল্প', path: '/neural-network/intro' },
-      { id: 'nn-perceptron', title: 'Perceptron', path: '/neural-network/perceptron' },
-      { id: 'nn-activation', title: 'Activation Function', path: '/neural-network/activation' },
-      { id: 'nn-mlp', title: 'Multi-Layer Network', path: '/neural-network/mlp' },
-      { id: 'nn-backprop', title: 'Backpropagation', path: '/neural-network/backprop' },
-      { id: 'nn-training', title: 'Training ও Gradient Descent', path: '/neural-network/training' },
     ],
   },
-  { id: 'vater-alap', title: 'বন্ধুদের ভাটের আলাপ', path: '/vater-alap' },
 ]
 
 export default function Sidebar() {
-  const [expandedItems, setExpandedItems] = useState<string[]>(['docker'])
+  const [expandedItems, setExpandedItems] = useState<string[]>(['neural-network'])
+  const [isMobileOpen, setIsMobileOpen] = useState(false)
 
   const toggleExpand = (id: string) => {
     setExpandedItems((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     )
   }
+
+  const closeMobileNav = () => setIsMobileOpen(false)
 
   const renderNavItem = (item: NavItem, level = 0) => {
     const hasChildren = item.children && item.children.length > 0
@@ -69,7 +41,8 @@ export default function Sidebar() {
         {item.path ? (
           <NavLink
             to={item.path}
-            className={({ isActive }) => 
+            onClick={closeMobileNav}
+            className={({ isActive }) =>
               `nav-link ${isActive ? 'active' : ''} ${level > 0 ? 'sub-item' : ''}`
             }
           >
@@ -100,16 +73,39 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="sidebar">
-      <div className="sidebar-header">
-        <img src={bondhutaLogo} alt="Bondhuta Logo" className="sidebar-logo" />
-        <h1 className="sidebar-title">বন্ধুতা - Tech Blog</h1>
-      </div>
-      <nav className="sidebar-nav">
-        <ul className="nav-list">
-          {navItems.map((item) => renderNavItem(item))}
-        </ul>
-      </nav>
-    </aside>
+    <>
+      {/* Mobile top bar with hamburger toggle */}
+      <header className="mobile-topbar">
+        <button
+          className="mobile-menu-toggle"
+          aria-label="Toggle navigation menu"
+          aria-expanded={isMobileOpen}
+          onClick={() => setIsMobileOpen((prev) => !prev)}
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+        <img src={bondhutaLogo} alt="Bondhuta Logo" className="mobile-topbar-logo" />
+        <span className="mobile-topbar-title">বন্ধুতা - Tech Blog</span>
+      </header>
+
+      {/* Backdrop shown when the mobile nav is open */}
+      {isMobileOpen && <div className="sidebar-overlay" onClick={closeMobileNav} />}
+
+      <aside className={`sidebar ${isMobileOpen ? 'open' : ''}`}>
+        <div className="sidebar-header">
+          <img src={bondhutaLogo} alt="Bondhuta Logo" className="sidebar-logo" />
+          <h1 className="sidebar-title">বন্ধুতা - Tech Blog</h1>
+        </div>
+        <nav className="sidebar-nav">
+          <ul className="nav-list">
+            {navItems.map((item) => renderNavItem(item))}
+          </ul>
+        </nav>
+      </aside>
+    </>
   )
 }

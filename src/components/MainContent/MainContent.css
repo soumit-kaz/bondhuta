@@ -226,13 +226,30 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .main-content {
-    padding: 20px;
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .blog-content {
+    font-size: 1rem;
+  }
+
+  .blog-content h2 {
+    font-size: 1.25rem;
   }
 
   .dialog-box.motu,
-  .dialog-box.bothu {
+  .dialog-box.votu {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  .formula-box {
+    overflow-x: auto;
+  }
+
+  .formula-box p {
+    font-size: 0.9rem;
+    white-space: nowrap;
   }
 }
