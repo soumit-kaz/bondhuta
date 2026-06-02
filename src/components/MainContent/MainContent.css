@@ -164,6 +164,52 @@
   font-size: 0.85em;
 }
 
+/* Figure / image box */
+.figure-box {
+  margin: 24px 0;
+  text-align: center;
+}
+
+.figure-box img {
+  max-width: 100%;
+  height: auto;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.figure-box figcaption {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Formula box */
+.formula-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #6366f1;
+  border-radius: 8px;
+  padding: 14px 20px;
+  margin: 16px 0;
+}
+
+.formula-box p {
+  margin: 6px 0;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 1rem;
+  color: #1e293b;
+  text-align: center;
+}
+
+.note-text {
+  font-size: 0.95rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
 /* Coming soon */
 .coming-soon-box {
   text-align: center;

@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import BlogLayout from './layouts/BlogLayout'
-import { DockerIntro, DockerBasics, DockerImages, RedisIntro, ComingSoon } from './pages'
+import { DockerIntro, DockerBasics, DockerImages, RedisIntro, NeuralNetworkIntro, ComingSoon } from './pages'
 import './App.css'
 
 function App() {
@@ -26,7 +26,15 @@ function App() {
           <Route path="redis/caching" element={<ComingSoon />} />
           <Route path="redis/pubsub" element={<ComingSoon />} />
           <Route path="redis/persistence" element={<ComingSoon />} />
-          
+
+          {/* Neural Network Series */}
+          <Route path="neural-network/intro" element={<NeuralNetworkIntro />} />
+          <Route path="neural-network/perceptron" element={<ComingSoon />} />
+          <Route path="neural-network/activation" element={<ComingSoon />} />
+          <Route path="neural-network/mlp" element={<ComingSoon />} />
+          <Route path="neural-network/backprop" element={<ComingSoon />} />
+          <Route path="neural-network/training" element={<ComingSoon />} />
+
           {/* Other */}
           <Route path="vater-alap" element={<ComingSoon />} />
           <Route path="*" element={<ComingSoon />} />
