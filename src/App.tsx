@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import BlogLayout from './layouts/BlogLayout'
-import { DockerIntro, DockerBasics, DockerImages, RedisIntro, NeuralNetworkIntro, ComingSoon } from './pages'
+import { NeuralNetworkIntro, ComingSoon } from './pages'
+// Other series temporarily disabled — keeping only Neural Network for now
+// import { DockerIntro, DockerBasics, DockerImages, RedisIntro } from './pages'
 import './App.css'
 
 function App() {
@@ -8,9 +10,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<BlogLayout />}>
-          <Route index element={<Navigate to="/docker/intro" replace />} />
-          
-          {/* Docker Series */}
+          <Route index element={<Navigate to="/neural-network/intro" replace />} />
+
+          {/* Docker Series — temporarily disabled
           <Route path="docker/intro" element={<DockerIntro />} />
           <Route path="docker/basics" element={<DockerBasics />} />
           <Route path="docker/images" element={<DockerImages />} />
@@ -18,14 +20,16 @@ function App() {
           <Route path="docker/compose" element={<ComingSoon />} />
           <Route path="docker/networking" element={<ComingSoon />} />
           <Route path="docker/volumes" element={<ComingSoon />} />
-          
-          {/* Redis Series */}
+          */}
+
+          {/* Redis Series — temporarily disabled
           <Route path="redis/intro" element={<RedisIntro />} />
           <Route path="redis/data-types" element={<ComingSoon />} />
           <Route path="redis/commands" element={<ComingSoon />} />
           <Route path="redis/caching" element={<ComingSoon />} />
           <Route path="redis/pubsub" element={<ComingSoon />} />
           <Route path="redis/persistence" element={<ComingSoon />} />
+          */}
 
           {/* Neural Network Series */}
           <Route path="neural-network/intro" element={<NeuralNetworkIntro />} />
