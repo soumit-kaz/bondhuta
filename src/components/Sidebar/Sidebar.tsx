@@ -36,6 +36,18 @@ const navItems: NavItem[] = [
       { id: 'redis-persistence', title: 'Persistence', path: '/redis/persistence' },
     ],
   },
+  {
+    id: 'neural-network',
+    title: 'Neural Network সিরিজ',
+    children: [
+      { id: 'nn-intro', title: 'একটা Neuron-এর গল্প', path: '/neural-network/intro' },
+      { id: 'nn-perceptron', title: 'Perceptron', path: '/neural-network/perceptron' },
+      { id: 'nn-activation', title: 'Activation Function', path: '/neural-network/activation' },
+      { id: 'nn-mlp', title: 'Multi-Layer Network', path: '/neural-network/mlp' },
+      { id: 'nn-backprop', title: 'Backpropagation', path: '/neural-network/backprop' },
+      { id: 'nn-training', title: 'Training ও Gradient Descent', path: '/neural-network/training' },
+    ],
+  },
   { id: 'vater-alap', title: 'বন্ধুদের ভাটের আলাপ', path: '/vater-alap' },
 ]
 
