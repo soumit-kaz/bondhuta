@@ -155,9 +155,24 @@ export default function NeuralNetworkIntro() {
           <p>"আরে, এ তো ভয়েরই কিছু ছিল না! একটা neuron মানে দেখি — গুণ করো, যোগ করো, তারপর তুলনা করো। 😄"</p>
         </div>
 
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"আচ্ছা আপু, একটা ব্যাপার — এই যে weight গুলো ধরে নিলাম (w₁ = 90, w₂ = 98, w₃ = 40),
+          এগুলো আসলে ঠিকঠাক ধরেছি কিনা তা তো নিশ্চিত না! কার গুরুত্ব আসলে কতটুকু হওয়া উচিত?
+          সত্যিই কি attendance-এর গুরুত্ব এত কম?"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>"দারুণ প্রশ্ন! 🙌 আসলে এই weight গুলো আমরা মুখে মুখে আন্দাজ করে ধরি না।
+          অনেক student-এর data বিশ্লেষণ করে neuron নিজেই সিদ্ধান্ত নেয় — কোন factor-এর weight
+          কত হওয়া উচিত, আর threshold-ই বা কত হওয়া উচিত। এই পুরো প্রক্রিয়াটাকেই বলে
+          <strong> training</strong>।"</p>
+        </div>
+
         <p className="highlight-text">
-          পরের পর্বে শিখবো — এই threshold আর weight গুলোর মান neuron নিজে কীভাবে শিখে নেয়,
-          আর কেন এর নাম Perceptron! 🚀
+          এই training process নিয়েই আস্তে আস্তে পরের পর্বগুলোতে শিখবো — neuron কীভাবে data থেকে
+          নিজে নিজে weight আর threshold শিখে নেয়! 🚀
         </p>
       </article>
     </>
