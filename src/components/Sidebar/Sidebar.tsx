@@ -16,6 +16,7 @@ const navItems: NavItem[] = [
     title: 'Neural Network সিরিজ',
     children: [
       { id: 'nn-intro', title: 'একটা Neuron-এর গল্প', path: '/neural-network/intro' },
+      { id: 'nn-learning', title: 'Neuron যেভাবে নিজে নিজে শেখে', path: '/neural-network/learning' },
     ],
   },
 ]

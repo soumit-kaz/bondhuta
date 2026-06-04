@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import BlogLayout from './layouts/BlogLayout'
-import { NeuralNetworkIntro, ComingSoon } from './pages'
+import { NeuralNetworkIntro, NeuralNetworkLearning, ComingSoon } from './pages'
 // Other series temporarily disabled — keeping only Neural Network for now
 // import { DockerIntro, DockerBasics, DockerImages, RedisIntro } from './pages'
 import './App.css'
@@ -33,6 +33,7 @@ function App() {
 
           {/* Neural Network Series */}
           <Route path="neural-network/intro" element={<NeuralNetworkIntro />} />
+          <Route path="neural-network/learning" element={<NeuralNetworkLearning />} />
 
           {/* Fallback */}
           <Route path="*" element={<ComingSoon />} />
