@@ -73,7 +73,7 @@ export default function NeuralNetworkLearning() {
         </div>
 
         <p>
-          বাহ, এখন threshold-এর সাথে তুলনা করতে হচ্ছে না — সরাসরি <strong>০-এর সাথে</strong>{' '}
+          বাহ, এখন threshold-এর সাথে তুলনা করতে হচ্ছে না — সরাসরি <strong>0-এর সাথে</strong>{' '}
           তুলনা করলেই হচ্ছে। 😄
         </p>
 
@@ -142,8 +142,8 @@ export default function NeuralNetworkLearning() {
         </div>
 
         <p>
-          দিয়ে দিলাম একটা <code>x₀</code>। আর এই x₀-এর মান <strong>সবসময় ১</strong>। মানে জোর করে
-          এমন একটা feature নিয়ে এলাম যার value সবসময় ১। (<code>w₀ × 1 = w₀</code>, কাজেই কিছু
+          দিয়ে দিলাম একটা <code>x₀</code>। আর এই x₀-এর মান <strong>সবসময় 1</strong>। মানে জোর করে
+          এমন একটা feature নিয়ে এলাম যার value সবসময় 1। (<code>w₀ × 1 = w₀</code>, কাজেই কিছু
           বদলায় না, শুধু দেখতে সুন্দর হয়।)
         </p>
 
@@ -154,7 +154,7 @@ export default function NeuralNetworkLearning() {
         <div className="dialog-box votu">
           <span className="dialog-name">ভতু:</span>
           <p>
-            "এই w₀-কে আদর করে একটা নাম দেওয়া হয় — <strong>bias</strong>। আর x₀ = ১-কে বলে bias
+            "এই w₀-কে আদর করে একটা নাম দেওয়া হয় — <strong>bias</strong>। আর x₀ = 1-কে বলে bias
             input। কাজ একটাই: threshold-টাকে weight-এর দলে ভিড়িয়ে দেওয়া, যাতে সব input-কে
             একইভাবে handle করা যায়।"
           </p>
@@ -171,7 +171,7 @@ export default function NeuralNetworkLearning() {
           </p>
         </div>
 
-        <p>ধরি একটা ৪×১ matrix —</p>
+        <p>ধরি একটা 4×1 matrix —</p>
 
         <div className="code-box">
           <pre>{`W = [ w₀ ]
@@ -180,7 +180,7 @@ export default function NeuralNetworkLearning() {
     [ w₃ ]`}</pre>
         </div>
 
-        <p>আর আরেকটা ৪×১ matrix —</p>
+        <p>আর আরেকটা 4×1 matrix —</p>
 
         <div className="code-box">
           <pre>{`X = [ x₀ ]
@@ -203,7 +203,7 @@ export default function NeuralNetworkLearning() {
         </div>
 
         <div className="code-box">
-          <pre>{`Wᵀ = [ w₀  w₁  w₂  w₃ ]   ← এটা এখন ১×৪`}</pre>
+          <pre>{`Wᵀ = [ w₀  w₁  w₂  w₃ ]   ← এটা এখন 1×4`}</pre>
         </div>
 
         <p>এবার Wᵀ আর X-কে গুণ করি —</p>
@@ -251,15 +251,15 @@ export default function NeuralNetworkLearning() {
           <h3>📊 আবুলের রিপোর্ট</h3>
           <ul>
             <li>
-              "দোস্ত, পড়াশোনা মোটামুটি করেছি — ১০০ ঘণ্টার মধ্যে <strong>৬০ ঘণ্টা</strong> চাপিয়ে
+              "দোস্ত, পড়াশোনা মোটামুটি করেছি — 100 ঘণ্টার মধ্যে <strong>60 ঘণ্টা</strong> চাপিয়ে
               দিয়েছি (x₁)।
             </li>
             <li>
-              আর যেটুকু পড়েছি, পুরোটাই মাথায় ঢুকেছে — <strong>৯৫%</strong> বুঝে ফেলেছি (x₂)!
+              আর যেটুকু পড়েছি, পুরোটাই মাথায় ঢুকেছে — <strong>95%</strong> বুঝে ফেলেছি (x₂)!
               এ ব্যাপারে আমি ক্লাসের সেরা। 😎
             </li>
             <li>
-              তবে... ইয়ে... ক্লাসে যাওয়াটা একটু কম হয়ে গেছে — মাত্র <strong>২০%</strong> (x₃)।
+              তবে... ইয়ে... ক্লাসে যাওয়াটা একটু কম হয়ে গেছে — মাত্র <strong>20%</strong> (x₃)।
               রাত জেগে পড়ি তো, সকালে আর চোখ খোলে না রে! 😴"
             </li>
           </ul>
@@ -270,8 +270,8 @@ export default function NeuralNetworkLearning() {
         <div className="dialog-box votu">
           <span className="dialog-name">ভতু:</span>
           <p>
-            "বাহ, perfect example! খেয়াল কর — তিনটা সংখ্যাই কিন্তু শতাংশ, মানে ০ থেকে ১০০-এর
-            scale-এ। আমরা একটা ছোট কাজ করবো — প্রতিটাকে ১০০ দিয়ে ভাগ করে ০ থেকে ১-এর scale-এ
+            "বাহ, perfect example! খেয়াল কর — তিনটা সংখ্যাই কিন্তু শতাংশ, মানে 0 থেকে 100-এর
+            scale-এ। আমরা একটা ছোট কাজ করবো — প্রতিটাকে 100 দিয়ে ভাগ করে 0 থেকে 1-এর scale-এ
             নামিয়ে আনবো। এতে সংখ্যাগুলো ছোট আর handle করতে সহজ থাকে। (এই scale মেলানোর ব্যাপারটা
             পরে আরও বিস্তারিত দেখবো 😄)"
           </p>
@@ -280,14 +280,14 @@ export default function NeuralNetworkLearning() {
         <p>তাহলে —</p>
 
         <div className="code-box">
-          <pre>{`X = [ 1    ]   ← x₀, সবসময় ১ (bias input)
+          <pre>{`X = [ 1    ]   ← x₀, সবসময় 1 (bias input)
     [ 0.60 ]   ← study
     [ 0.95 ]   ← understanding
     [ 0.20 ]   ← attendance`}</pre>
         </div>
 
         <p>
-          আর আমাদের আন্দাজ করা weight গুলো (threshold ধরলাম ৩, কাজেই w₀ = −threshold = −৩) —
+          আর আমাদের আন্দাজ করা weight গুলো (threshold ধরলাম 3, কাজেই w₀ = −threshold = −3) —
         </p>
 
         <div className="code-box">
@@ -300,7 +300,7 @@ export default function NeuralNetworkLearning() {
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
           <p>
-            "দাঁড়াও আপু — attendance-এর weight ৩, কিন্তু understanding-এর weight মাত্র ১?
+            "দাঁড়াও আপু — attendance-এর weight 3, কিন্তু understanding-এর weight মাত্র 1?
             বোঝার চেয়ে ক্লাসে হাজিরা বেশি গুরুত্বপূর্ণ?! এটা তো উল্টো মনে হচ্ছে!"
           </p>
         </div>
@@ -348,8 +348,8 @@ new_weighted_sum_term = Wᵀ X
           <span className="dialog-name">ভতু:</span>
           <p>
             "একটু থেমে ভাব তো — neuron ভুল করলো ঠিক কোথায়? আমাদের new_weighted_sum_term-এর
-            মান এসেছে <strong>−0.25</strong>, মানে ০-এর চেয়ে কম। তাই y হলো ০। অথচ আমরা চাইছিলাম
-            y = ১, মানে চাইছিলাম যোগফলটা ০-এর <strong>চেয়ে বেশি</strong> হোক।"
+            মান এসেছে <strong>−0.25</strong>, মানে 0-এর চেয়ে কম। তাই y হলো 0। অথচ আমরা চাইছিলাম
+            y = 1, মানে চাইছিলাম যোগফলটা 0-এর <strong>চেয়ে বেশি</strong> হোক।"
           </p>
         </div>
 
@@ -380,7 +380,7 @@ new_weighted_sum_term = Wᵀ X
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
           <p>
-            "আর যদি উল্টো ঘটনা হতো? মানে neuron বললো y = ১, কিন্তু হওয়ার কথা ছিল ০? তখন তো
+            "আর যদি উল্টো ঘটনা হতো? মানে neuron বললো y = 1, কিন্তু হওয়ার কথা ছিল 0? তখন তো
             যোগফলটা উল্টো <strong>কমাতে</strong> হবে!"
           </p>
         </div>
@@ -457,7 +457,7 @@ new_weighted_sum_term = Wᵀ X
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
           <p>
-            "বাহ! Error যদি +১ হয় তাহলে W + X, −১ হলে W − X, আর ০ হলে weight একটুও নড়বে না —
+            "বাহ! Error যদি +1 হয় তাহলে W + X, −1 হলে W − X, আর 0 হলে weight একটুও নড়বে না —
             মানে যেখানে neuron ঠিক বলছে সেখানে হাতই দেবো না!"
           </p>
         </div>
@@ -469,7 +469,7 @@ new_weighted_sum_term = Wᵀ X
 
         <h2>⚙️ আবুলের জন্য weight আপডেট</h2>
 
-        <p>আবুলের ক্ষেত্রে y = ০, কিন্তু d = ১। তাই —</p>
+        <p>আবুলের ক্ষেত্রে y = 0, কিন্তু d = 1। তাই —</p>
 
         <div className="formula-box">
           <p>Error = d − y = 1 − 0 = +1</p>
@@ -484,7 +484,7 @@ new_weighted_sum_term = Wᵀ X
         </div>
 
         <p>
-          খেয়াল কর — understanding-এর weight ১ থেকে বেড়ে ১.৯৫ হলো, bias-ও −৩ থেকে −২ হলো।
+          খেয়াল কর — understanding-এর weight 1 থেকে বেড়ে 1.95 হলো, bias-ও −3 থেকে −2 হলো।
           নতুন weight দিয়ে আবার আবুলের ফল বের করি —
         </p>
 
@@ -502,16 +502,16 @@ new_weighted_sum_term = Wᵀ X
         <div className="dialog-box votu">
           <span className="dialog-name">ভতু:</span>
           <p>
-            "হ্যাঁ — তবে এখানে একটা ফাঁদ আছে। আমরা শুধু <strong>একজনের</strong> data দিয়ে weight
-            ঠিক করলাম। এই নতুন weight দিয়ে কি বাকি সব student-এর উত্তরও ঠিক আসবে? নাকি একজনকে
-            ঠিক করতে গিয়ে আরেকজনকে ভুল করে ফেলবে? চল, ক্লাসের আরও কয়েকজনকে ডেকে দেখি।"
+            "হ্যাঁ — তবে আমরা কিন্তু শুধু <strong>একজনের</strong> data দিয়ে weight ঠিক করলাম।
+            এই নতুন weight দিয়ে কি বাকি সব student-এর উত্তরও ঠিকঠাক আসবে? সেটা যাচাই না করে তো
+            বলা যায় না। চল, ক্লাসের আরও কয়েকজনকে ডেকে পুরো হিসাবটা মিলিয়ে দেখি।"
           </p>
         </div>
 
         <h2>👥 পুরো ক্লাসের data — এক epoch</h2>
 
         <p>
-          ভতু আবুলের সাথে আরও তিনজনের data জোগাড় করলো (সবই ১০০ দিয়ে ভাগ করে ০–১ scale-এ আনা) —
+          ভতু আবুলের সাথে আরও তিনজনের data জোগাড় করলো (সবই 100 দিয়ে ভাগ করে 0–1 scale-এ আনা) —
         </p>
 
         <div className="table-wrap">
@@ -531,28 +531,28 @@ new_weighted_sum_term = Wᵀ X
                 <td>0.60</td>
                 <td>0.95</td>
                 <td>0.20</td>
-                <td>১</td>
+                <td>1</td>
               </tr>
               <tr>
                 <td>বাবুল</td>
                 <td>0.30</td>
                 <td>0.40</td>
                 <td>0.90</td>
-                <td>০</td>
+                <td>0</td>
               </tr>
               <tr>
                 <td>কাবুল</td>
                 <td>0.80</td>
                 <td>0.85</td>
                 <td>0.70</td>
-                <td>১</td>
+                <td>1</td>
               </tr>
               <tr>
                 <td>দাবুল</td>
                 <td>0.20</td>
                 <td>0.25</td>
                 <td>0.30</td>
-                <td>০</td>
+                <td>0</td>
               </tr>
             </tbody>
           </table>
@@ -568,8 +568,8 @@ new_weighted_sum_term = Wᵀ X
           <p>
             "এখন একটা শব্দ শিখে রাখ। পুরো dataset-এর উপর একবার শুরু থেকে শেষ পর্যন্ত ঘুরে আসাকে
             বলে এক <strong>epoch</strong>। আর ভেতরে প্রতিটা student-কে নিয়ে একটা করে ধাপ — সেই এক
-            একটা ধাপকে বলে এক <strong>iteration</strong>। আমাদের ৪ জন student, কাজেই এক epoch =
-            ৪টা iteration। (অনেকে ঢিলেঢালাভাবে দুটোকে একই অর্থে বলে ফেলে, কিন্তু পরিষ্কার করে বললে
+            একটা ধাপকে বলে এক <strong>iteration</strong>। আমাদের 4 জন student, কাজেই এক epoch =
+            4টা iteration। (অনেকে ঢিলেঢালাভাবে দুটোকে একই অর্থে বলে ফেলে, কিন্তু পরিষ্কার করে বললে
             এটাই নিয়ম।)"
           </p>
         </div>
@@ -583,7 +583,7 @@ new_weighted_sum_term = Wᵀ X
           <p>W = [ -3.0, &nbsp;2.0, &nbsp;1.0, &nbsp;3.0 ]</p>
         </div>
 
-        <h3>🔁 Epoch ১ — পুরোটা খুলে</h3>
+        <h3>🔁 Epoch 1 — পুরোটা খুলে</h3>
 
         <p>
           <strong>👦 আবুল</strong> — চলতি weight <code>W = [-3.0, 2.0, 1.0, 3.0]</code> দিয়ে:
@@ -662,8 +662,7 @@ W_new = W − X
           <span className="dialog-name">মোটু:</span>
           <p>
             "দেখো আপু — আবুলকে ঠিক করতে গিয়ে weight বাড়লো, আবার বাবুলের বেলায় উল্টো কমলো!
-            একটা epoch শেষেও কিন্তু সবাই ঠিক হলো না নিশ্চিত — শুরুর weight দিয়ে দেখলে বাবুল তো
-            ভুলই ছিল।"
+            এক epoch ঘুরেও কিন্তু কাজ পুরো শেষ হয়নি বলে মনে হচ্ছে।"
           </p>
         </div>
 
@@ -671,12 +670,12 @@ W_new = W − X
           <span className="dialog-name">ভতু:</span>
           <p>
             "ঠিক! এক epoch-এ সাধারণত কাজ শেষ হয় না। তাই আবার শুরু থেকে পুরো dataset-এর উপর ঘুরি —
-            epoch ২। এবার থেকে প্রতিটা ধাপ একই নিয়মে চলবে, তাই শুধু ফলগুলো সংক্ষেপে সাজিয়ে দিই
+            epoch 2। এবার থেকে প্রতিটা ধাপ একই নিয়মে চলবে, তাই শুধু ফলগুলো সংক্ষেপে সাজিয়ে দিই
             (প্রতিটা sum কিন্তু ঠিক আগের মতোই সেই মুহূর্তের সবচেয়ে নতুন weight দিয়ে বের করা):"
           </p>
         </div>
 
-        <h3>🔁 Epoch ২:</h3>
+        <h3>🔁 Epoch 2:</h3>
         <div className="code-box">
           <pre>{`আবুল : sum =  0.31  → y=1, d=1, Error= 0  → ঠিক
 বাবুল : sum =  0.38  → y=1, d=0, Error=-1  → আপডেট  W = [-4.0, 2.0, 1.15, 1.40]
@@ -684,26 +683,7 @@ W_new = W − X
 দাবুল : sum = -1.31  → y=0, d=0, Error= 0  → ঠিক`}</pre>
         </div>
 
-        <div className="dialog-box motu">
-          <span className="dialog-name">মোটু:</span>
-          <p>
-            "আপু, দাঁড়াও! একটা গোলমাল দেখছি — কাবুল তো epoch ১-এ একদম ঠিক ছিল (Error ০)। অথচ
-            এই epoch ২-এ সে আবার ভুল হয়ে গেল (sum −0.44)! আমরা কি তাহলে বাবুলকে শেখাতে গিয়ে
-            কাবুলের শেখাটা নষ্ট করে ফেললাম? neuron কি আগেরটা ভুলে যাচ্ছে?"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "দারুণ চোখ! 👏 হ্যাঁ — এটাই আসল একটা মজার ব্যাপার। একজনের জন্য weight ঠেলতে গিয়ে আগে-ঠিক-
-            হওয়া আরেকজন সাময়িকভাবে ভুল হয়ে যেতেই পারে। neuron যেন এক পা এগোয়, আধ পা পিছায়।
-            তাহলে কাজটা কখনো শেষ হবে কি? এই data-র জন্য একটা সুন্দর গ্যারান্টি আছে — সেই গল্পটা
-            তুলে রাখছি পরের পর্বের জন্য। আপাতত শুধু দেখি, ঘুরতে ঘুরতে শেষে কী হয়।"
-          </p>
-        </div>
-
-        <h3>🔁 Epoch ৩:</h3>
+        <h3>🔁 Epoch 3:</h3>
         <div className="code-box">
           <pre>{`আবুল : sum =  1.00  → y=1, d=1, Error= 0  → ঠিক
 বাবুল : sum =  0.53  → y=1, d=0, Error=-1  → আপডেট  W = [-4.0, 2.50, 1.60, 1.20]
@@ -711,7 +691,7 @@ W_new = W − X
 দাবুল : sum = -2.74  → y=0, d=0, Error= 0  → ঠিক`}</pre>
         </div>
 
-        <h3>🔁 Epoch ৪:</h3>
+        <h3>🔁 Epoch 4:</h3>
         <div className="code-box">
           <pre>{`আবুল : sum = -0.74  → y=0, d=1, Error=+1  → আপডেট  W = [-3.0, 3.10, 2.55, 1.40]
 বাবুল : sum =  0.21  → y=1, d=0, Error=-1  → আপডেট  W = [-4.0, 2.80, 2.15, 0.50]
@@ -719,7 +699,7 @@ W_new = W − X
 দাবুল : sum = -2.75  → y=0, d=0, Error= 0  → ঠিক`}</pre>
         </div>
 
-        <h3>🔁 Epoch ৫:</h3>
+        <h3>🔁 Epoch 5:</h3>
         <div className="code-box">
           <pre>{`আবুল : sum = -0.18  → y=0, d=1, Error=+1  → আপডেট  W = [-3.0, 3.40, 3.10, 0.70]
 বাবুল : sum = -0.11  → y=0, d=0, Error= 0  → ঠিক
@@ -727,7 +707,7 @@ W_new = W − X
 দাবুল : sum = -1.34  → y=0, d=0, Error= 0  → ঠিক`}</pre>
         </div>
 
-        <h3>🔁 Epoch ৬:</h3>
+        <h3>🔁 Epoch 6:</h3>
         <div className="code-box">
           <pre>{`আবুল : sum =  2.13  → y=1, d=1, Error= 0  → ঠিক
 বাবুল : sum = -0.11  → y=0, d=0, Error= 0  → ঠিক
@@ -748,8 +728,7 @@ W_new = W − X
           <p>
             "একদম। যখন একটা গোটা epoch-এ আর কোনো আপডেট লাগে না — অর্থাৎ সবাইকে neuron
             ঠিকঠাক চিনে ফেলেছে — তখন আমরা বলি neuron <strong>শিখে ফেলেছে</strong>, training শেষ।
-            একে বলে <strong>convergence</strong>। আর খেয়াল কর — তোর সেই 'ভুলে যাওয়া'-র দুশ্চিন্তা
-            শেষমেশ মিটে গেল: ঘুরতে ঘুরতে neuron এমন এক weight খুঁজে পেল যেখানে সবাই একসাথে ঠিক।"
+            একে বলে <strong>convergence</strong>।"
           </p>
         </div>
 
@@ -765,8 +744,8 @@ W_new = W − X
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
           <p>
-            "আরে আপু, মজার ব্যাপার! শুরুতে আমরা ভুল করে attendance-এর গুরুত্ব সবচেয়ে বেশি (৩)
-            আর understanding-এর সবচেয়ে কম (১) ধরেছিলাম। কিন্তু neuron নিজে নিজে শিখে উল্টে দিল —"
+            "আরে আপু, মজার ব্যাপার! শুরুতে আমরা ভুল করে attendance-এর গুরুত্ব সবচেয়ে বেশি (3)
+            আর understanding-এর সবচেয়ে কম (1) ধরেছিলাম। কিন্তু neuron নিজে নিজে শিখে উল্টে দিল —"
           </p>
         </div>
 
@@ -792,35 +771,46 @@ W_new = W − X
         <div className="concept-box">
           <h3>🧠 Neuron-এর শেখা মানে আসলে weight ঠিক করে নেওয়া</h3>
           <ul>
-            <li>১. data দেখে একটা উত্তর (y) বের করে,</li>
-            <li>২. সঠিক উত্তরের (d) সাথে মিলিয়ে Error = d − y বের করে,</li>
+            <li>1. data দেখে একটা উত্তর (y) বের করে,</li>
+            <li>2. সঠিক উত্তরের (d) সাথে মিলিয়ে Error = d − y বের করে,</li>
             <li>
-              ৩. সেই Error অনুযায়ী weight ঠেলে দেয় — <code>W_new = W + Error × X</code>{' '}
+              3. সেই Error অনুযায়ী weight ঠেলে দেয় — <code>W_new = W + Error × X</code>{' '}
               (বাড়াতে হলে +X, কমাতে হলে −X, ঠিক থাকলে কিছুই না),
             </li>
             <li>
-              ৪. পুরো dataset-এর উপর বারবার epoch চালায়, যতক্ষণ না আর কোনো Error থাকে —
+              4. পুরো dataset-এর উপর বারবার epoch চালায়, যতক্ষণ না আর কোনো Error থাকে —
               মানে convergence।
             </li>
           </ul>
         </div>
 
+        <h2>🤔 কিন্তু মোটুর মাথায় নতুন এক খটকা</h2>
+
+        <p>
+          ট্রেনিং শেষ, neuron শিখে ফেলেছে — কিন্তু মোটু চুপ করে বসে আছে। কী যেন একটা ভাবছে।
+        </p>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>
+            "আপু, একটা জিনিস আমার মাথায় ঘুরছে। যখন বাবুলের data দিয়ে weight গুলো নতুন করে
+            সাজালাম, তখন কি আবুলের ভুল থেকে neuron যা শিখেছিল ঠিক সেটাই নষ্ট করে দিলাম না? মানে —
+            একজনকে নতুন কিছু শেখাতে গিয়ে neuron কি আগের জনের শেখাটা <strong>ভুলে</strong> যেতে পারে?"
+          </p>
+        </div>
+
         <div className="dialog-box votu">
           <span className="dialog-name">ভতু:</span>
           <p>
-            "চমৎকার গুছিয়েছিস! তবে তিনটে প্রশ্ন এখনো ঝুলে আছে — (১) প্রতিবার আমরা পুরো X
-            যোগ/বিয়োগ করছি, এতে weight কি মাঝে মাঝে অনেক বেশি লাফিয়ে যাচ্ছে না? (২) তুই যে
-            'একজনকে শেখাতে গিয়ে আরেকজনকে ভুলে যাওয়া' ধরেছিলি — এবার সুন্দরভাবে মিটে গেল ঠিকই,
-            কিন্তু সবসময় কি এমন মিটবে? নাকি neuron চিরকাল এক পা এগিয়ে আধ পা পিছিয়ে ঘুরপাক খেতেই
-            থাকবে? (৩) ছোট, সাজানো একটা dataset-এ তো convergence হলো — কিন্তু data যদি এমন হয় যে
-            কোনো সরল রেখা দিয়ে দুই দল আলাদাই করা যায় না, তখন?"
+            "(ভতু একটু থেমে মুচকি হাসলো।) উরে বাবা! তুই আজ এমন একটা প্রশ্ন করে ফেলেছিস, যেটা নিয়ে
+            আজও বড় বড় গবেষকরা মাথা ঘামান। এর উত্তরটা এত সুন্দর আর এত জরুরি যে — ওটা আমি পুরো একটা
+            পর্ব জুড়ে বলবো। আজ এটুকুই থাক, প্রশ্নটা মাথায় গেঁথে রাখ।"
           </p>
         </div>
 
         <p className="highlight-text">
-          সেই গল্পই আসবে পরের পর্বে — <strong>learning rate</strong> দিয়ে weight-এর লাফ মেপে রাখা,
-          আর <strong>Perceptron Convergence</strong>-এর সেই গ্যারান্টি (কখন neuron নিশ্চিত শিখবে,
-          আর কোন data সে কোনোদিনই শিখতে পারবে না — সেই সীমানার কথা)! 🚀
+          পরের পর্বে এই প্রশ্নেরই উত্তর খুঁজবো — neuron নতুন কিছু শিখতে গিয়ে পুরনো শেখা সত্যিই
+          ভুলে যায় কিনা, আর গেলে আমরা কী করি! 🚀
         </p>
       </article>
     </>
