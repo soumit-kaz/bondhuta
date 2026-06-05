@@ -1,3 +1,5 @@
+import { Matrix, MatrixEq, Op, Var } from '../../components/Matrix/Matrix'
+
 export default function NeuralNetworkLearning() {
   return (
     <>
@@ -173,21 +175,17 @@ export default function NeuralNetworkLearning() {
 
         <p>ধরি একটা 4×1 matrix —</p>
 
-        <div className="code-box">
-          <pre>{`W = [ w₀ ]
-    [ w₁ ]
-    [ w₂ ]
-    [ w₃ ]`}</pre>
-        </div>
+        <MatrixEq>
+          <Op>W =</Op>
+          <Matrix caption="4×1" data={[['w₀'], ['w₁'], ['w₂'], ['w₃']]} />
+        </MatrixEq>
 
         <p>আর আরেকটা 4×1 matrix —</p>
 
-        <div className="code-box">
-          <pre>{`X = [ x₀ ]
-    [ x₁ ]
-    [ x₂ ]
-    [ x₃ ]`}</pre>
-        </div>
+        <MatrixEq>
+          <Op>X =</Op>
+          <Matrix caption="4×1" data={[['x₀'], ['x₁'], ['x₂'], ['x₃']]} />
+        </MatrixEq>
 
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
@@ -202,21 +200,24 @@ export default function NeuralNetworkLearning() {
           </p>
         </div>
 
-        <div className="code-box">
-          <pre>{`Wᵀ = [ w₀  w₁  w₂  w₃ ]   ← এটা এখন 1×4`}</pre>
-        </div>
+        <MatrixEq>
+          <Op>Wᵀ =</Op>
+          <Matrix caption="1×4" data={[['w₀', 'w₁', 'w₂', 'w₃']]} />
+        </MatrixEq>
 
         <p>এবার Wᵀ আর X-কে গুণ করি —</p>
 
-        <div className="code-box">
-          <pre>{`Wᵀ X = [ w₀  w₁  w₂  w₃ ]   ×   [ x₀ ]
-         (1×4)                    [ x₁ ]
-                                  [ x₂ ]
-                                  [ x₃ ]
-                                   (4×1)
+        <MatrixEq>
+          <Op>Wᵀ X =</Op>
+          <Matrix caption="1×4" data={[['w₀', 'w₁', 'w₂', 'w₃']]} />
+          <Op>×</Op>
+          <Matrix caption="4×1" data={[['x₀'], ['x₁'], ['x₂'], ['x₃']]} />
+        </MatrixEq>
 
-     = [ w₀·x₀ + w₁·x₁ + w₂·x₂ + w₃·x₃ ]   ← (1×1)`}</pre>
-        </div>
+        <MatrixEq>
+          <Op>=</Op>
+          <Matrix caption="1×1" data={[['w₀·x₀ + w₁·x₁ + w₂·x₂ + w₃·x₃']]} />
+        </MatrixEq>
 
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
@@ -279,23 +280,35 @@ export default function NeuralNetworkLearning() {
 
         <p>তাহলে —</p>
 
-        <div className="code-box">
-          <pre>{`X = [ 1    ]   ← x₀, সবসময় 1 (bias input)
-    [ 0.60 ]   ← study
-    [ 0.95 ]   ← understanding
-    [ 0.20 ]   ← attendance`}</pre>
-        </div>
+        <MatrixEq>
+          <Op>X =</Op>
+          <Matrix
+            data={[['1'], ['0.60'], ['0.95'], ['0.20']]}
+            notes={[
+              'x₀, সবসময় 1 (bias input)',
+              'study',
+              'understanding',
+              'attendance',
+            ]}
+          />
+        </MatrixEq>
 
         <p>
           আর আমাদের আন্দাজ করা weight গুলো (threshold ধরলাম 3, কাজেই w₀ = −threshold = −3) —
         </p>
 
-        <div className="code-box">
-          <pre>{`W = [ -3.0 ]   ← w₀ (bias)
-    [  2.0 ]   ← study-র গুরুত্ব
-    [  1.0 ]   ← understanding-এর গুরুত্ব
-    [  3.0 ]   ← attendance-এর গুরুত্ব`}</pre>
-        </div>
+        <MatrixEq>
+          <Op>W =</Op>
+          <Matrix
+            data={[['−3.0'], ['2.0'], ['1.0'], ['3.0']]}
+            notes={[
+              'w₀ (bias)',
+              'study-র গুরুত্ব',
+              'understanding-এর গুরুত্ব',
+              'attendance-এর গুরুত্ব',
+            ]}
+          />
+        </MatrixEq>
 
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
@@ -315,10 +328,13 @@ export default function NeuralNetworkLearning() {
 
         <h2>🧮 হিসাব মেলানো</h2>
 
-        <div className="code-box">
-          <pre>{`Wᵀ = [ -3.0   2.0   1.0   3.0 ]
+        <MatrixEq>
+          <Op>Wᵀ =</Op>
+          <Matrix data={[['−3.0', '2.0', '1.0', '3.0']]} />
+        </MatrixEq>
 
-new_weighted_sum_term = Wᵀ X
+        <div className="code-box">
+          <pre>{`new_weighted_sum_term = Wᵀ X
   = (-3.0 × 1) + (2.0 × 0.60) + (1.0 × 0.95) + (3.0 × 0.20)
   = -3.0 + 1.20 + 0.95 + 0.60
   = -0.25`}</pre>
@@ -374,7 +390,7 @@ new_weighted_sum_term = Wᵀ X
         <p>সবচেয়ে সহজ উপায় — প্রতিটা weight-এর সাথে তার নিজের x-টা যোগ করে দাও:</p>
 
         <div className="formula-box">
-          <p>W_new = W + X</p>
+          <p>W<sub>new</sub> = W + X</p>
         </div>
 
         <div className="dialog-box motu">
@@ -391,7 +407,7 @@ new_weighted_sum_term = Wᵀ X
         </div>
 
         <div className="formula-box">
-          <p>W_new = W − X</p>
+          <p>W<sub>new</sub> = W − X</p>
         </div>
 
         <div className="dialog-box votu">
@@ -451,7 +467,7 @@ new_weighted_sum_term = Wᵀ X
         <p>কাজেই তিনটা ঘটনাকেই <strong>একটা</strong> নিয়মে লেখা যায় —</p>
 
         <div className="formula-box">
-          <p>W_new = W + Error × X</p>
+          <p>W<sub>new</sub> = W + Error × X</p>
         </div>
 
         <div className="dialog-box motu">
@@ -475,13 +491,19 @@ new_weighted_sum_term = Wᵀ X
           <p>Error = d − y = 1 − 0 = +1</p>
         </div>
 
-        <div className="code-box">
-          <pre>{`W_new = W + Error × X
-      = [ -3.0 ]       [ 1    ]     [ -2.0 ]
-        [  2.0 ]  +  1 × [ 0.60 ]  =  [  2.60 ]
-        [  1.0 ]       [ 0.95 ]     [  1.95 ]
-        [  3.0 ]       [ 0.20 ]     [  3.20 ]`}</pre>
-        </div>
+        <MatrixEq>
+          <Var name="W" sub="new" />
+          <Op>= W + Error × X</Op>
+        </MatrixEq>
+
+        <MatrixEq>
+          <Op>=</Op>
+          <Matrix data={[['−3.0'], ['2.0'], ['1.0'], ['3.0']]} />
+          <Op>+ 1 ×</Op>
+          <Matrix data={[['1'], ['0.60'], ['0.95'], ['0.20']]} />
+          <Op>=</Op>
+          <Matrix data={[['−2.0'], ['2.60'], ['1.95'], ['3.20']]} />
+        </MatrixEq>
 
         <p>
           খেয়াল কর — understanding-এর weight 1 থেকে বেড়ে 1.95 হলো, bias-ও −3 থেকে −2 হলো।
@@ -734,10 +756,13 @@ W_new = W − X
 
         <p>চূড়ান্ত weight দাঁড়ালো —</p>
 
-        <div className="code-box">
-          <pre>{`W = [ -3.0,  3.40,  3.10,  0.70 ]
-       bias  study  underst. attend.`}</pre>
-        </div>
+        <MatrixEq>
+          <Op>W =</Op>
+          <Matrix
+            data={[['−3.0', '3.40', '3.10', '0.70']]}
+            caption="bias · study · understanding · attendance"
+          />
+        </MatrixEq>
 
         <h2>🎓 এখন একটু থেমে weight গুলোর দিকে তাকাই</h2>
 
