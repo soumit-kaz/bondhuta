@@ -5,15 +5,21 @@
 
 ## বাংলা
 
-ছোট learning rate পুরনো শেখা বাঁচায় — এই কথাটা ভুল।
+একটা neuron-কে দ্বিতীয় example শেখালাম। প্রথমটা ভুলে গেল।
 
-প্রায় সবাই বলে, η ছোট রাখলে model-এর আগের শেখাটা কম নড়ে, বেশি নিরাপদ থাকে। যুক্তিটা এত স্বাভাবিক শোনায় যে কেউ উল্টে দেখে না।
+হাতে কষা হিসাব। চারটা weight দিয়ে শুরু। আবুলের data দেখিয়ে একবার update করলাম — neuron তাকে চিনে ফেললো, sum দাঁড়ালো 2.0525।
 
-একটা ছোট neuron-কে পরপর দুজন example দেখালাম। η = 1 হলে প্রথম জনের score শেষমেশ দাঁড়ায় 0.3125। শুধু η = 0.5 করলেই সেই score দাঁড়ায় 0.03125 — 0 পেরিয়ে উল্টে যাওয়ার দশ গুণ কাছে। কারণ η শুধু data থেকে আসা correction-টাকে ছোট করে, শুরুর weight-টাকে ছোঁয়ই না।
+এবার শুধু বাবুলকে শেখালাম। দুবার update লাগলো। বাবুল ঠিক হলো।
 
-তার মানে η কমালে model সাবধানী হয় না — শুধু আপনার শুরুর guess-টা বেশিদিন ক্ষমতায় থেকে যায়। যেটা আসলে protect হচ্ছে, সেটা model-এর শেখা না, আপনার hunch।
+তারপর আবুলকে আবার জিজ্ঞেস করলাম। উত্তর এলো −1.4275। ভুল।
 
-আপনার কোনো model-এ কি কখনো ছোট learning rate আসলে নতুন data-কে না বলে পুরনো bias-টাকেই বেশিদিন টিকিয়ে রেখেছিল?
+কারণটা সহজ, আর একটু ভয়ের। neuron-এর মাথায় আবুলের জন্য আলাদা কোনো খাতা নেই। সবার জন্য একটাই weight vector। ওটা বদলালে সবার উত্তরই বদলায়।
+
+বাঁচার উপায়? পুরো dataset নিয়ে বারবার ঘোরা। আবুল আবার সামনে আসে, আবার নিজের কথা বলে।
+
+তবে এটাকে catastrophic forgetting বলে ফেলা ঠিক হবে না। ওখানে পুরনো task-এর data আর ফেরতই আসে না — সেটাই আসল বিপদ।
+
+আপনার কোনো model কি কখনো নতুন data শিখতে গিয়ে আগের কোনো case চুপচাপ ভেঙে ফেলেছিল?
 
 #NeuralNetworks #MachineLearning #BanglaTech #Bondhuta
 
@@ -21,17 +27,21 @@
 
 ## English
 
-Halving the learning rate made this score ten times more fragile.
+I taught a neuron one example, then a second. It forgot the first.
 
-The standard advice: lower your learning rate and old learning survives new updates better. It sounds obviously true.
+Worked by hand, four weights. One update on student A and the neuron got him right — his score moved to 2.0525.
 
-Train a perceptron on two examples in sequence. At η = 1, the first example's score ends at 0.3125 — barely on the right side of zero. Drop η to 0.5, expecting more protection, and it ends at 0.03125. Ten times closer to flipping sign. η only scales the correction from data; it never touches the weights you started with.
+Then I trained only on student B. Two updates. B correct.
 
-So a smaller η doesn't protect what the model has learned — it protects your initial guess, for longer.
+Went back and asked about A again: −1.4275. Wrong.
 
-If you're lowering learning rate to fight forgetting, check what's actually staying fixed — the data's correction, or your initialization.
+There is no separate memory per example. One weight vector answers for everybody, so moving it for B moves it for A. The learning was never stored anywhere it could be protected.
 
-Has anyone tracked this past a toy example — does it hold at scale, or does something else take over once real data enters?
+The fix is unglamorous — keep cycling the whole dataset so A comes back and re-states his case.
+
+Worth being precise though: this is not catastrophic forgetting. That term is for the case where the old task's data never returns, and that absence is what makes it hard.
+
+Where I'd like other people's experience: has anyone seen this bite in production — a model quietly losing an old case after training on new data, with no test catching it?
 
 #NeuralNetworks #MachineLearning #BanglaTech #Bondhuta
 
@@ -39,4 +49,6 @@ Has anyone tracked this past a toy example — does it hold at scale, or does so
 
 ### Suggested first comment
 
-https://bondhuta.vercel.app/neural-network/interference — আজকের পুরো হিসাবটা, পর্ব ২-এর সংখ্যা দিয়েই।
+https://bondhuta.vercel.app/neural-network/interference
+
+— পুরো হিসাবটা হাতে কষা আছে, আগের পর্বের সেই আবুল-বাবুলের data দিয়েই।

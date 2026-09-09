@@ -79,44 +79,44 @@ notes:            পর্ব ২ নিঃশব্দে η = 1 ধরেছ�
 status:           published (2026-09-09, verdict score 93.00)
 ```
 
-### পর্ব ৪ — Neuron আসলে একটা দাগ টানে
+### পর্ব ৪ — Neuron কতটা করে শেখে?
+```
+route:            neural-network/learning-rate
+component:        NeuralNetworkLearningRate
+sidebar-id:       nn-learning-rate
+sidebar-title:    Neuron কতটা করে শেখে?
+central-question: Error হলো — কিন্তু weight ঠিক কতটা বদলাবো?
+teaches:          learning rate η, W_new = W + η · Error × X, বড় η-তে অস্থিরতা,
+                  ছোট η-তে ধীর শেখা, আর gradient descent কী করতে চায় (নাম + উদ্দেশ্য)
+requires:         W_new = W + Error × X (২), epoch/iteration (২), convergence (২),
+                  একই W সবার জন্য (৩)
+pays-off:         পর্ব ৩-এর শেষ প্রশ্ন — "একবারে অনেকটা না বদলে একটু একটু করে বদলালে?"
+teases:           gradient, gradient descent, backpropagation → পরের পর্বগুলো
+reader-after:     একই আবুল-বাবুল data-য় η = 0.5 দিয়ে নিজে হাতে update কষতে পারবে,
+                  আর বলতে পারবে η বড়/ছোট হলে কী বদলায়
+notes:            ⚠️ AUTHOR RULING 2026-09-09 — পর্ব ৩ থেকে learning rate সরিয়ে এখানে আনা
+                  হয়েছে। পর্ব ৩ শেষ হয় মোটুর "একটু একটু করে বদলালে?" প্রশ্ন দিয়ে, আর সেটাই
+                  এই পর্বের দরজা। আগের পরিকল্পনায় পর্ব ৪ ছিল decision boundary — সেটা পিছিয়ে
+                  গেছে। একই আবুল-বাবুল dataset, গল্প + হাতে-কলমে হিসাব + matrix notation।
+status:           planned (next)
+```
+
+### পর্ব ৫ — Neuron আসলে একটা দাগ টানে
 ```
 route:            neural-network/decision-boundary
 component:        NeuralNetworkBoundary
 sidebar-id:       nn-boundary
 sidebar-title:    Neuron যে দাগটা টানে
 central-question: weight গুলো কাগজে আসলে কী আঁকছে?
-teaches:          decision boundary, Wᵀ X = 0 মানে একটা সরলরেখা, bias মানে রেখাটার সরে যাওয়া
-requires:         Wᵀ X (২), bias (২), y = 0/1 (১), weight update (২)
-pays-off:         —
-teases:           "এমন কোনো সাজানো বিন্দু আছে যেটা কোনো দাগেই আলাদা করা যায় না?" → পর্ব ৫
+teaches:          decision boundary (নামটা পর্ব ৩-এ বলা হয়ে গেছে), Wᵀ X = 0 মানে একটা
+                  সরলরেখা, bias মানে রেখাটার সরে যাওয়া
+requires:         Wᵀ X (২), bias (২), y = 0/1 (১), weight update (২), η (৪)
+pays-off:         পর্ব ৩-এ decision boundary নামটা বলা হয়েছিল, ব্যাখ্যা হয়নি
+teases:           "এমন কোনো সাজানো বিন্দু আছে যেটা কোনো দাগেই আলাদা করা যায় না?" → XOR পর্ব
 reader-after:     দুটো input-এর ক্ষেত্রে w₀ + w₁x₁ + w₂x₂ = 0 রেখাটা নিজে এঁকে বলতে পারবে
                   কোন দিকে y = 1
-must-not-teach:   linear separability শব্দটা, XOR, layer, activation, loss
-notes:            training-কে "রেখাটা ঠেলে সরানো" হিসেবে দেখানো — পর্ব ২-এর সংখ্যাগুলোই
-                  জ্যামিতিতে অনুবাদ। figure-plan: inline SVG, নতুন PNG নয়।
-                  x₃ বাদ দিয়ে দুই-মাত্রায় নামা লাগবে (আবুলদের study আর understanding)।
-status:           planned
-```
-
-### পর্ব ৫ — যে দাগ কোনোদিন টানা যায় না
-```
-route:            neural-network/xor
-component:        NeuralNetworkXor
-sidebar-id:       nn-xor
-sidebar-title:    যে দাগ টানা যায় না
-central-question: এমন কোনো প্রশ্ন আছে কি, যার উত্তর একটা neuron কোনোদিনই শিখতে পারবে না?
-teaches:          linear separability, XOR সমস্যা, perceptron শব্দটা ও তার সীমা,
-                  feature scaling / normalisation (full treatment)
-requires:         decision boundary (৪), convergence (২), interference/η (৩)
-pays-off:         পর্ব ३-এর "কিছু dataset কখনো থামে না" — এখানে কারণটা, OL-02 সম্পূর্ণ (full normalisation)
-teases:           OL-05 — "একটা দাগে না হলে?" → পর্ব ৬
-reader-after:     চারটা XOR বিন্দু এঁকে নিজেই দেখাতে পারবে কোনো সরলরেখা ওদের আলাদা করে না,
-                  আর বুঝবে কেন training চিরকাল চলতে থাকে
-must-not-teach:   hidden layer কীভাবে কাজ করে, activation, loss, gradient
-notes:            এখানেই পাঠককে "perceptron" নামটা দেওয়া — দুই পর্ব ধরে সে যেটা বানিয়েছে
-                  তার নাম, যাতে সে Google করতে পারে। ঐতিহাসিক প্রসঙ্গ (Minsky–Papert)
-                  এক অনুচ্ছেদের বেশি নয়।
+notes:            x₃ বাদ দিয়ে দুই-মাত্রায় নামা লাগবে (আবুলদের study আর understanding)।
+                  figure-plan: inline SVG, নতুন PNG নয়।
 status:           planned
 ```
 

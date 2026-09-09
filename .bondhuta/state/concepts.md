@@ -22,15 +22,15 @@
 | online learning | taught | 2 | — | — |
 | convergence | taught | 2 | 3 (re-scoped: always "আমাদের চারজনের ডেটায়", never as universal law) | — |
 | feature scaling / normalisation | teased | 1 | 2, 3 (partially paid: ÷100 asymmetry; full treatment owed) | — |
-| interference | taught | 3 | — | — |
-| dot product | taught | 3 | — | — |
-| catastrophic forgetting | teased | 3 | — | — |
-| learning rate η | taught | 3 | — | (η's second meaning — step size on curved surface — owned by পর্ব ১০) |
+| interference | taught | 3 | — | catastrophic forgetting |
+| dot product | pending | — | — | — |
+| catastrophic forgetting | taught | 3 | — | continual learning |
+| learning rate η | teased | 3 | — | পর্ব ৪-এ পুরো শেখানো হবে; পর্ব ৩ শুধু নাম বলেছে |
 | activation function | pending | — | — | — |
 | loss function | pending | — | — | gradient descent |
-| gradient descent | pending | — | — | backprop |
+| gradient descent | teased | 3 | — | নাম বলা হয়েছে পর্ব ৩-এ, পর্ব ১০-এ শেখানো |
 | chain rule | pending | — | — | backprop |
-| backpropagation | pending | — | — | multi-layer network |
+| backpropagation | teased | 3 | — | নাম বলা হয়েছে পর্ব ৩-এ, পর্ব ১২-এ শেখানো |
 | multi-layer network | pending | — | — | — |
 | linear separability | pending | — | — | (পর্ব ৩ leaned on it; explicitly acknowledged as unnamed, unproven assumption; owed to পর্ব ৫) |
 | XOR | pending | — | — | — |

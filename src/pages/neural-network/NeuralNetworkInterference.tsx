@@ -5,784 +5,735 @@ export default function NeuralNetworkInterference() {
 
       <article className="blog-content">
         <p className="intro-text">
-          গত পর্বের একদম শেষে মোটু একটা প্রশ্ন করে বসেছিল — একজনকে শেখাতে গিয়ে neuron কি আগের জনের
-          শেখাটা ভুলে যায়? ভতু সেদিন উত্তরটা দেয়নি। বলেছিল, ওর জন্য পুরো একটা পর্ব লাগবে। এটাই সেই পর্ব।
+          গত পর্বের শেষে মোটু একটা অদ্ভুত প্রশ্ন করেছিল — একজনকে নতুন কিছু শেখাতে গিয়ে neuron কি আগের
+          জনের শেখা ভুলে যেতে পারে? ভতু বলেছিল, "এই প্রশ্নের উত্তরটা পুরো একটা পর্ব জুড়ে বলবো।" আজ সেই
+          দিন। 😄
         </p>
 
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "আজ নতুন কোনো student লাগবে না, নতুন data-ও না। উত্তরটা গত পর্বের পাতাতেই লেখা আছে। শুধু
-            আমরা খেয়াল করিনি। পাতাটা পাশে খুলে রাখ।"
-          </p>
-        </div>
-
-        <h2>😰 মোটুর প্রথম ভয়</h2>
-
-        <p>ভতু গত পর্বের Epoch 1-টা আবার সামনে টেনে আনলো। মোটু তাকিয়ে ছিল, হঠাৎ চেঁচিয়ে উঠলো —</p>
+        <h2>🧠 শেখা মানেই কিন্তু শুধু মনে রাখা নয়</h2>
 
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
           <p>
-            "আরে সর্বনাশ! আপু দেখো — আবুলের জন্য w₀ ছিল −3.0, কারেকশনের পর হলো −2.0। তারপর বাবুল এলো,
-            আর ওটা আবার −3.0! মানে আবুলের কারেকশনটা তো পুরো মুছেই গেল! 😰"
+            "আপু, গত পর্বে দেখলাম neuron ভুল করলে weight বদলে ফেলে। কিন্তু আমার প্রশ্নটা এখনো আছে। ধরো,
+            আবুলের data দেখে neuron কিছু শিখলো। তারপর বাবুলের data দেখে weight আবার বদলালো। তাহলে
+            বাবুলকে শেখানোর সময় আবুলের শেখাটা কি নষ্ট হয়ে যেতে পারে?"
           </p>
         </div>
 
         <div className="dialog-box votu">
           <span className="dialog-name">ভতু:</span>
-          <p>"ভয়টা একদম ঠিক জায়গায় পেয়েছিস। কিন্তু তুই একটা ঘর দেখে বিচার করছিস। বাকি তিনটা দেখ —"</p>
+          <p>"হ্যাঁ... <strong>পারে।</strong>"</p>
+        </div>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"সত্যি?! 😮"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "তবে একটু সাবধানে বুঝতে হবে। Weight-এর প্রতিটা পরিবর্তন পুরো neuron-এর আচরণ বদলে দেয়। তাই
+            নতুন একটা example ঠিক করতে গিয়ে পুরনো কোনো example-এর prediction ভুল হয়ে যেতে পারে।"
+          </p>
+        </div>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"মানে neuron একজনকে পড়াতে গিয়ে আরেকজনের উত্তর ভুলে যেতে পারে?"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>"একদম! আজ সেটাই নিজের চোখে দেখবো।"</p>
+        </div>
+
+        <h2>👦 আগে শুধু আবুলকে শেখাই</h2>
+
+        <p>চলো আগের সেই starting weight-এই ফিরে যাই —</p>
+
+        <div className="formula-box">
+          <p>W = [ -3.0, &nbsp;2.0, &nbsp;1.0, &nbsp;3.0 ]</p>
+        </div>
+
+        <p>আবুলের data ছিল —</p>
+
+        <div className="formula-box">
+          <p>X<sub>A</sub> = [ 1, &nbsp;0.60, &nbsp;0.95, &nbsp;0.20 ]</p>
+          <p>d<sub>A</sub> = 1</p>
+        </div>
+
+        <p>প্রথমে neuron হিসাব করলো —</p>
+
+        <div className="code-box">
+          <pre>{`sum = (-3.0×1) + (2.0×0.60) + (1.0×0.95) + (3.0×0.20)
+    = -3.0 + 1.20 + 0.95 + 0.60
+    = -0.25            →  -0.25 < 0  ⟹  y = 0`}</pre>
+        </div>
+
+        <p>কিন্তু আবুলের আসল উত্তর d = 1। তাই —</p>
+
+        <div className="formula-box">
+          <p>Error = d − y = 1 − 0 = +1</p>
         </div>
 
         <div className="code-box">
-          <pre>{`শুরুতে        W = [-3.0,  2.0,   1.0,   3.0 ]
-আবুলের পরে    W = [-2.0,  2.60,  1.95,  3.20]
-বাবুলের পরে   W = [-3.0,  2.30,  1.55,  2.30]`}</pre>
+          <pre>{`W_new = W + Error × X
+      = [-3.0, 2.0, 1.0, 3.0] + [1, 0.60, 0.95, 0.20]
+      = [-2.0, 2.60, 1.95, 3.20]`}</pre>
+        </div>
+
+        <p>আবার আবুলকে পরীক্ষা করি —</p>
+
+        <div className="code-box">
+          <pre>{`sum = (-2.0×1) + (2.60×0.60) + (1.95×0.95) + (3.20×0.20)
+    = -2.0 + 1.56 + 1.8525 + 0.64
+    = 2.0525           →  2.0525 > 0  ⟹  y = 1 ✅`}</pre>
+        </div>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"ইয়েস! আবুলকে neuron চিনে ফেলেছে!"</p>
         </div>
 
         <div className="dialog-box votu">
           <span className="dialog-name">ভতু:</span>
           <p>
-            "w₀ ফিরেছে, ঠিক। কিন্তু 2.0 এখন 2.30। 1.0 এখন 1.55। 3.0 এখন 2.30। তিনটার একটাও নিজের
-            জায়গায় ফেরেনি।"
+            "হ্যাঁ। এখন ধরে নে, এই মুহূর্তে neuron-এর কাছে আবুলের শেখাটা হলো — <strong>আবুল → A+ →
+            1</strong> ✅"
+          </p>
+        </div>
+
+        <h2>👦 এবার শুধু বাবুলকে শেখাই</h2>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>"এবার আবুলকে আপাতত একপাশে রেখে শুধু বাবুলকে শেখাই।"</p>
+        </div>
+
+        <p>বাবুলের data —</p>
+
+        <div className="formula-box">
+          <p>X<sub>B</sub> = [ 1, &nbsp;0.30, &nbsp;0.40, &nbsp;0.90 ]</p>
+          <p>d<sub>B</sub> = 0</p>
+        </div>
+
+        <p>
+          খেয়াল করো, neuron-এর এখনকার weight কিন্তু আবুলের কাছ থেকে শেখা —{' '}
+          <code>W = [-2.0, 2.60, 1.95, 3.20]</code>। বাবুলের জন্য হিসাব করি —
+        </p>
+
+        <div className="code-box">
+          <pre>{`sum = (-2.0×1) + (2.60×0.30) + (1.95×0.40) + (3.20×0.90)
+    = -2.0 + 0.78 + 0.78 + 2.88
+    = 2.44             →  y = 1`}</pre>
+        </div>
+
+        <p>কিন্তু বাবুলের আসল উত্তর d = 0। অর্থাৎ neuron ভুল করেছে। 😬</p>
+
+        <div className="code-box">
+          <pre>{`Error = 0 - 1 = -1
+
+W_new = W - X
+      = [-2.0, 2.60, 1.95, 3.20] - [1, 0.30, 0.40, 0.90]
+      = [-3.0, 2.30, 1.55, 2.30]`}</pre>
+        </div>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"ঠিক আছে। বাবুলও এবার ঠিক হলো।"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>"একবার পরীক্ষা করে দেখি।"</p>
+        </div>
+
+        <div className="code-box">
+          <pre>{`sum = (-3.0×1) + (2.30×0.30) + (1.55×0.40) + (2.30×0.90)
+    = -3.0 + 0.69 + 0.62 + 2.07
+    = 0.38             →  y = 1`}</pre>
+        </div>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"ওমা! এখনো ভুল!"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "ঠিক ধরেছিস। একবার update করলেই সবসময় সঙ্গে সঙ্গে ঠিক হয়ে যায় না। আবার update করি।"
+          </p>
+        </div>
+
+        <div className="code-box">
+          <pre>{`Error = -1 আবার
+
+W_new = W - X
+      = [-3.0, 2.30, 1.55, 2.30] - [1, 0.30, 0.40, 0.90]
+      = [-4.0, 2.0, 1.15, 1.40]`}</pre>
+        </div>
+
+        <p>এবার বাবুলকে পরীক্ষা করি —</p>
+
+        <div className="code-box">
+          <pre>{`sum = (-4.0×1) + (2.0×0.30) + (1.15×0.40) + (1.40×0.90)
+    = -4.0 + 0.60 + 0.46 + 1.26
+    = -1.68            →  -1.68 < 0  ⟹  y = 0 ✅`}</pre>
+        </div>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"এইবার বাবুল ঠিক!"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>"হ্যাঁ। কিন্তু এবার আসল প্রশ্নটা করি।"</p>
+        </div>
+
+        <h2>😱 আবুলকে কি আমরা ভুলিয়ে দিলাম?</h2>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "এই যে বাবুলকে ঠিক করতে করতে weight হয়ে গেল <code>W = [-4.0, 2.0, 1.15, 1.40]</code> — এখন
+            আবার আবুলকে পরীক্ষা কর।"
+          </p>
+        </div>
+
+        <div className="code-box">
+          <pre>{`sum = (-4.0×1) + (2.0×0.60) + (1.15×0.95) + (1.40×0.20)
+    = -4.0 + 1.20 + 1.0925 + 0.28
+    = -1.4275          →  -1.4275 < 0  ⟹  y = 0 ❌`}</pre>
+        </div>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"আআআ! 😱 আবুল তো A+ ছিল! এখন neuron বলছে A+ না!"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>"হ্যাঁ।"</p>
+        </div>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"মানে বাবুলকে শেখাতে গিয়ে আবুলের শেখাটা সত্যিই নষ্ট হয়ে গেল?!"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>"এই উদাহরণে <strong>হ্যাঁ, সাময়িকভাবে</strong>।"</p>
+        </div>
+
+        <h2>🧠 আসলে কী হলো?</h2>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "দেখ, neuron-এর মাথায় আলাদা আলাদা করে লেখা নেই — আবুলের জন্য এই weight, বাবুলের জন্য ওই
+            weight, কাবুলের জন্য আরেক weight। neuron-এর কাছে সবার জন্য একটাই weight vector।"
+          </p>
+        </div>
+
+        <div className="formula-box">
+          <p>W = [ w₀, &nbsp;w₁, &nbsp;w₂, &nbsp;w₃ ]</p>
+        </div>
+
+        <p>
+          এই একটা W দিয়েই <strong>সব student-এর</strong> prediction তৈরি হয়। তাই W বদলালে শুধু নতুন
+          student-এর prediction বদলায় না — পুরনো student-এর prediction-ও বদলে যায়।
+        </p>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"ওহ! মানে একটা shared notebook-এর মতো?"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "দারুণ analogy! 😄 একটা notebook-এ নতুন করে কিছু লিখলে আগের লেখাটা সরাসরি না মুছলেও পুরো
+            notebook-এর ব্যবহার বদলে যেতে পারে। neuron-এর বেলায় সেই notebook হলো তার{' '}
+            <strong>weights</strong>।"
+          </p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "তবে analogy-টা এখানেই ছেড়ে দিতে হবে। notebook-এ পুরনো লেখা আর নতুন লেখা আলাদা জায়গায়
+            থাকে। neuron-এ থাকে না — একই চারটা সংখ্যা সবার হয়ে কথা বলে। তাই ওখানে জায়গা ভাগ করা যায়,
+            এখানে যায় না।"
+          </p>
+        </div>
+
+        <h2>🔄 তাহলে কি সবসময় নতুনটা শিখে পুরনোটা ভুলে যাবে?</h2>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>
+            "তাহলে তো বিপদ! একজনকে শেখালাম, তারপর আরেকজনকে শেখালাম — শেষে প্রথমজনের সব ভুলে যাবে!"
+          </p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "এতটা ভয় পাওয়ার দরকার নেই। কারণ আমরা একটা কাজ ইচ্ছে করে করিনি — বাবুলকে শেখানোর পর আবুলকে
+            আর দেখাইনি।"
           </p>
         </div>
 
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
-          <p>"তাহলে... কিছু গেল, কিছু রইলো? কোনটা কতটুকু, সেটা বুঝবো কী করে?"</p>
+          <p>"মানে?"</p>
         </div>
 
         <div className="dialog-box votu">
           <span className="dialog-name">ভতু:</span>
           <p>
-            "একটা weight দেখে বোঝা যাবে না। আবুলের ভাগ্য ঠিক করে একটাই সংখ্যা — তার নিজের{' '}
-            <strong>sum</strong>। ওটা 0-এর ডানে পড়লে neuron বলে A+, বাঁয়ে পড়লে বলে না। কাজেই আমাদের ওই
-            একটা সংখ্যার দিকেই তাকাতে হবে।"
+            "আমরা যদি পুরো dataset নিয়ে বারবার ঘুরি, তাহলে আবুল আবার সামনে আসবে। তখন neuron দেখবে
+            আবুলের জন্য y = 0, অথচ d = 1। তাই আবার Error = +1, আর weight আবার আবুলের দিকে ঠেলে যাবে।"
           </p>
         </div>
 
+        <h2>🔁 এবার পুরো dataset-কে আবার সামনে আনি</h2>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "এই জন্যই training-এ আমরা শুধু একজনকে দেখে থেমে যাই না। পুরো dataset-এর উপর বারবার ঘুরি।"
+          </p>
+        </div>
+
+        <p>আমাদের dataset আবার মনে করো —</p>
+
+        <div className="table-wrap">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>study (x₁)</th>
+                <th>understanding (x₂)</th>
+                <th>attendance (x₃)</th>
+                <th>আসলে A+? (d)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>আবুল</td>
+                <td>0.60</td>
+                <td>0.95</td>
+                <td>0.20</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>বাবুল</td>
+                <td>0.30</td>
+                <td>0.40</td>
+                <td>0.90</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>কাবুল</td>
+                <td>0.80</td>
+                <td>0.85</td>
+                <td>0.70</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>দাবুল</td>
+                <td>0.20</td>
+                <td>0.25</td>
+                <td>0.30</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"মানে আবুলকে আবার দেখাবো, তারপর বাবুল, তারপর কাবুল, তারপর দাবুল?"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "ঠিক তাই। আর এই জন্যই গত পর্বে <strong>epoch</strong>-এর কথা বলেছিলাম। একটা epoch মানে পুরো
+            dataset-এর উপর একবার ঘোরা। আর প্রতিটা student-এর জন্য prediction → error → update — এক
+            একটা <strong>iteration</strong>।"
+          </p>
+        </div>
+
+        <h2>🎢 ভুল করে, আবার শেখে</h2>
+
+        <p>ধরো, বাবুলকে শেখাতে গিয়ে আবুলের prediction নষ্ট হয়ে গেল। তারপর আবুল আবার dataset-এ এলো।</p>
+
+        <p>আবুল বললো — "আমার আসল উত্তর তো 1!" neuron বললো — "আমি 0 বলেছি।"</p>
+
+        <div className="formula-box">
+          <p>Error = 1 − 0 = +1</p>
+        </div>
+
+        <p>তাই neuron weight আবার বাড়ানোর দিকে ঠেলবে। অর্থাৎ —</p>
+
+        <div className="code-box">
+          <pre>{`বাবুল শেখা  →  আবুল ভুল
+আবুল শেখা   →  বাবুল আবার ভুল হতে পারে`}</pre>
+        </div>
+
         <p>
-          তার আগে দুটো শব্দ আলাদা করে নাও। সারা পর্ব জুড়ে এই দুটোর পার্থক্যই আসল খেলা।
+          এভাবে প্রথমে ব্যাপারটা একটু দোলনার মতো হতে পারে। 😄 একদিকে weight ঠেলছে আবুলের জন্য, অন্যদিকে
+          বাবুলের জন্য আবার উল্টো দিকে।
         </p>
 
+        <p>
+          কিন্তু dataset যদি এমন হয় যে একটা নির্দিষ্ট <strong>decision boundary</strong> দিয়ে সবাইকে
+          আলাদা করা সম্ভব, তাহলে শেষ পর্যন্ত এমন একটা weight পাওয়া যেতে পারে যেখানে সবাই ঠিকঠাক
+          classified হয়। সেই অবস্থায় আর update লাগে না।
+        </p>
+
+        <p>এটাই গত পর্বে দেখেছিলাম — <strong>convergence</strong>।</p>
+
+        <h2>🎯 আগের training-টাই আসলে এর প্রমাণ</h2>
+
+        <p>গত পর্বে কী হয়েছিল মনে আছে? Epoch 1 শেষে —</p>
+
+        <div className="formula-box">
+          <p>W = [ -3.0, &nbsp;2.30, &nbsp;1.55, &nbsp;2.30 ]</p>
+        </div>
+
+        <p>
+          তারপর বারবার student-দের সামনে আনা হলো। কখনো আবুলের জন্য weight বাড়লো। কখনো বাবুলের জন্য
+          কমলো। কখনো কাবুল এসে দেখলো prediction ঠিক — কোনো update হলো না। দাবুলও কখনো কিছু বদলালো না।
+        </p>
+
+        <p>শেষে Epoch 5-এর পর —</p>
+
+        <div className="formula-box">
+          <p>W = [ -3.0, &nbsp;3.40, &nbsp;3.10, &nbsp;0.70 ]</p>
+        </div>
+
+        <p>তারপর Epoch 6-এ —</p>
+
+        <div className="code-box">
+          <pre>{`আবুল  →  ঠিক ✅
+বাবুল →  ঠিক ✅
+কাবুল →  ঠিক ✅
+দাবুল →  ঠিক ✅`}</pre>
+        </div>
+
+        <p>কেউ Error দিল না। তাই আর কোনো weight update দরকার হলো না। এটাই convergence।</p>
+
+        <h2>🧩 একটা গুরুত্বপূর্ণ পার্থক্য</h2>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"আপু, তাহলে এটাকেই কি বলে catastrophic forgetting?"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "দারুণ প্রশ্ন! কিন্তু এখানেই একটু সাবধান হতে হবে। আমরা যেটা দেখলাম — নতুন example শেখার
+            ফলে পুরনো example-এর prediction খারাপ হয়ে যাওয়া — সেটা forgetting-এর একটা সহজ উদাহরণ।"
+          </p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "কিন্তু machine learning-এ <strong>catastrophic forgetting</strong> বলতে সাধারণত আরও গুরুতর
+            একটা ব্যাপার বোঝায়।"
+          </p>
+        </div>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"কী রকম?"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "ধর, একটা বড় neural network-কে প্রথমে অনেকদিন ধরে <strong>Task A</strong> শেখানো হলো। সে
+            Task A খুব ভালো পারে। তারপর তাকে <strong>Task B</strong>-এর data দিয়ে অনেকক্ষণ training
+            করানো হলো।"
+          </p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "Training শেষে দেখা গেল — Task B সে দারুণ পারে, কিন্তু Task A-তে performance ভীষণ খারাপ হয়ে
+            গেছে। নতুন task শেখার সময় পুরনো task-এর শেখা ব্যাপকভাবে নষ্ট হয়ে গেছে। এটাই broadly
+            catastrophic forgetting।"
+          </p>
+        </div>
+
+        <h2>🧠 তাহলে পার্থক্যটা কোথায়?</h2>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"আমাদের ছোট্ট neuron-এও তো forgetting হলো। তাহলে দুটো এক জিনিস নয় কেন?"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "কারণ আমাদের example খুব ছোট আর পরিষ্কার। আর আমরা একই dataset বারবার দেখাচ্ছি। কিন্তু বড়
+            neural network-এ হাজার হাজার, এমনকি কোটি কোটি parameter থাকতে পারে।"
+          </p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>
+            "সেখানে এক task-এর জন্য শেখা representation-গুলো নতুন task শেখার সময় ব্যাপকভাবে বদলে যেতে
+            পারে। আর পুরনো task-এর data যদি আর training-এ ফেরত না আসে, network-এর পক্ষে পুরনো শেখাটা
+            ধরে রাখা কঠিন হয়ে যায়।"
+          </p>
+        </div>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>
+            "মানে পুরনো ছাত্রকে যদি আর কখনো ক্লাসেই না ডাকি, নতুন ছাত্রদের পড়াতে পড়াতে ওকে ভুলে যাওয়ার
+            চান্স বেশি?"
+          </p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>"একদম! 😄 এই analogy-টা মাথায় রাখিস।"</p>
+        </div>
+
+        <h2>📚 পুরো ব্যাপারটা এক নজরে</h2>
+
+        <div className="code-box">
+          <pre>{`আবুল  → শেখানো হলো  → neuron জানে আবুল A+   ✅
+বাবুল → শেখানো হলো  → weight বদলালো
+                     → আবুল এখন ভুল          ❌
+আবুল  → আবার এলো    → আবার শেখানো হলো       ✅
+বাবুল → আবার এলো    → আবার ঠিক করা হলো      ✅`}</pre>
+        </div>
+
+        <p>এই বারবার correction-টাই training-এর একটা স্বাভাবিক অংশ।</p>
+
+        <h2>🛠️ তাহলে forgetting কমানোর উপায় কী?</h2>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"আচ্ছা, যদি সত্যিই পুরনো শেখা হারিয়ে যায়, তাহলে সেটা আটকাবো কীভাবে?"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>"এই প্রশ্নের উত্তরটাও বেশ মজার। অনেক ধরনের উপায় আছে।"</p>
+        </div>
+
         <div className="concept-box">
-          <h3>📐 নড়া, আর মুছে যাওয়া</h3>
+          <h3>💡 উপায় ১ — পুরনো data আবার দেখানো</h3>
           <ul>
-            <li>
-              <strong>নড়া</strong> — আবুলের sum তার জায়গা থেকে সরে গেল। একটু হোক, অনেক হোক — সরেছে
-              মানেই নড়েছে।
-            </li>
-            <li>
-              <strong>মুছে যাওয়া</strong> — সেই sum 0 পেরিয়ে উল্টো পাশে চলে গেল। মানে neuron আবুলের
-              ব্যাপারে যে উত্তরটা ঠিক দিচ্ছিল, সেটাই ভুল হয়ে গেল।
-            </li>
+            <li>নতুন data শেখানোর সময় পুরনো data-র কিছু অংশও training-এ রাখি।</li>
+            <li>তাহলে network শুধু নতুন জিনিস নিয়ে ভাববে না, পুরনোটাও বারবার মনে করবে।</li>
+            <li>অনেকটা — "নতুন অধ্যায় পড়, কিন্তু আগেরটার revision-ও কর।"</li>
           </ul>
         </div>
 
-        <h2>🔗 বাবুলের update আবুলের sum-এর ভেতরে</h2>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "লিখতে সুবিধা হবে, তাই চারজনকে একটা করে অক্ষর দিই — আবুল A, বাবুল B, কাবুল C, দাবুল D। আ,
-            বা, কা, দা — নামগুলো যেন ইচ্ছে করেই সাজানো ছিল! 😄"
-          </p>
+        <div className="concept-box">
+          <h3>🔒 উপায় ২ — পুরনো শেখাকে শক্ত করে ধরে রাখা</h3>
+          <ul>
+            <li>কোন parameter-গুলো পুরনো task-এর জন্য গুরুত্বপূর্ণ ছিল, সেটা হিসাব করে রাখা হয়।</li>
+            <li>তারপর নতুন task শেখানোর সময় ওগুলোকে খুব বেশি বদলাতে দেওয়া হয় না।</li>
+            <li>মানে — "এই weight-টা খুব গুরুত্বপূর্ণ, এটাকে বেশি নাড়াচাড়া করিস না!"</li>
+          </ul>
         </div>
 
-        <p>
-          তাহলে ওদের feature-এর matrix হলো <code>X_A</code>, <code>X_B</code>, <code>X_C</code>,{' '}
-          <code>X_D</code>। আর আবুলের যোগফলটা <code>sum_A</code>।
-        </p>
-
-        <p>
-          গত পর্ব থেকে দুটো জিনিস হাতে আছে। এক নম্বর — আবুলের sum। সেই <code>WᵀX</code>-ই, ছোট করে{' '}
-          <code>W · X_A</code> লিখছি।
-        </p>
-
-        <div className="formula-box">
-          <p>sum<sub>A</sub> = W · X<sub>A</sub></p>
-        </div>
-
-        <p>দুই নম্বর — বাবুল ভুল করলে weight যেভাবে বদলায়।</p>
-
-        <div className="formula-box">
-          <p>W<sub>new</sub> = W + Error<sub>B</sub> × X<sub>B</sub></p>
-        </div>
-
-        <p>
-          এখন কাজ একটাই। বাবুলের পালা শেষ হওয়ার পর neuron যে নতুন W নিয়ে ঘুরছে, ওটা দিয়ে আবুলের sum
-          আবার বের করো।
-        </p>
-
-        <div className="code-box">
-          <pre>{`sum_A (নতুন) = W_new · X_A
-             = (W + Error_B × X_B) · X_A
-             = (W · X_A) + Error_B × (X_B · X_A)
-             = sum_A (পুরনো) + Error_B × (X_A · X_B)`}</pre>
-        </div>
-
-        <p>
-          তৃতীয় লাইনটায় একটু থামো। ওখানে বন্ধনীটা খুলে দিলাম। ভেতরের দুটো জিনিসকে আলাদা আলাদা{' '}
-          <code>X_A</code> দিয়ে গুণ করলাম।
-        </p>
-
-        <p>
-          আগে যোগ করে তারপর গুণ, আর আলাদা গুণ করে তারপর যোগ — দুটোয় একই ফল। গত পর্বে{' '}
-          <code>WᵀX</code>-টা যেভাবে <code>w₀·x₀ + w₁·x₁ + w₂·x₂ + w₃·x₃</code> করে খুলেছিলাম, ওভাবে
-          খুলে দেখো, ঘরে ঘরে মিলে যাবে।
-        </p>
-
-        <p>তাহলে দাঁড়ালো —</p>
-
-        <div className="formula-box">
-          <p>Δsum<sub>A</sub> = Error<sub>B</sub> × (X<sub>A</sub> · X<sub>B</sub>)</p>
-        </div>
-
-        <p>
-          বাঁ পাশের <code>Δ</code> মানে "কতটুকু বদলালো"। আর ডান পাশে মাত্র দুটো জিনিস — বাবুলের Error,
-          আর দুজনের feature-এর গুণফল।
-        </p>
-
-        <div className="dialog-box motu">
-          <span className="dialog-name">মোটু:</span>
-          <p>
-            "দাঁড়াও আপু! আবুলের কতটা ক্ষতি হবে, সেটা তাহলে পুরোটাই বাবুলের ভুলের উপর? আবুল নিজে ঠিক
-            ছিল না ভুল ছিল, তার কোনো ভূমিকাই নেই?"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "একদম ধরেছিস। এখানেই আসল ঘটনাটা। আবুলের যেটুকু যাচ্ছে, তার মাপে আবুলের নিজের ভুল-ঠিকের
-            কোনো হাত নেই। আবুলের অংশ শুধু তার <code>X</code>-টা — 1, 0.60, 0.95, 0.20। ব্যাস।"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "আর এই ব্যাপারটার একটা নাম শিখে রাখ — <strong>interference</strong>। একজনের শেখা আরেকজনের
-            শেখার উপর এসে পড়ছে। গত পর্বে যে নিয়মে আমরা weight ঠেলছিলাম, ওটার নামও বলে দিই —{' '}
-            <strong>perceptron learning rule</strong>। আর একজন একজন করে শেখানোর ধরনটা{' '}
-            <strong>online learning</strong>, সেটা তো তুই আগেই জানিস।"
-          </p>
-        </div>
-
-        <h2>✖️ দুজনের X গুণ করলে কী পাই</h2>
-
-        <p>
-          <code>X_A · X_B</code> জিনিসটা নতুন কিছু নয়। গত পর্বে <code>WᵀX</code> করেছিলে — ঘরে ঘরে গুণ,
-          তারপর যোগ। এখানেও ঠিক তাই। শুধু <code>W</code>-এর জায়গায় আরেকজনের <code>X</code> বসেছে।
-        </p>
-
-        <p>এই কাজটার একটা নাম আছে — <strong>dot product</strong>।</p>
-
-        <div className="dialog-box motu">
-          <span className="dialog-name">মোটু:</span>
-          <p>
-            "তাহলে এমন দুজন কি থাকতে পারে, যারা একে অন্যকে একটুও নাড়ায় না? মানে যাদের এই গুণফলটা শূন্য?"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "এই চারজনের বেলায় কক্ষনো না। আর মজার ব্যাপার — কারণটা তুই গত পর্বেই নিজের চোখে দেখেছিস।
-            আগে আবুলের সারিটা কষে ফেলি।"
-          </p>
-        </div>
-
-        <div className="code-box">
-          <pre>{`X_A · X_A = 2.3025      X_A · X_B = 1.7400
-X_A · X_C = 2.4275      X_A · X_D = 1.4175`}</pre>
-        </div>
-
-        <p>
-          কারণটা প্রতিটা জোড়ার ভেতরেই লুকিয়ে। প্রথম ঘরটা সবসময় <code>1 × 1</code>, কারণ{' '}
-          <strong>সবার x₀ = 1</strong>। ওটা কখনো বদলায় না।
-        </p>
-
-        <p>
-          বাকি তিনটা ঘরে দুটো করে পজিটিভ ভগ্নাংশ গুণ হচ্ছে। কাজেই কোনোটা নেগেটিভ হওয়ার চান্সই নেই।
-          মানে যোগফলটা সবসময় 1-এর সমান বা তার বেশি — <strong>চারজনের কোনো জোড়াই শূন্য নয়</strong>।
-          এই চারজনের সবচেয়ে ছোট গুণফলটা 1.1925।
-        </p>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "গত পর্বে x₀ = 1 বসানোর সময় আমি বলেছিলাম, ওটা নাকি শুধু দেখতে সুন্দর হওয়ার জন্য। মনে আছে?
-            আসলে ওটাই কারণ — এই চারজনের কেউ কাউকে না নাড়িয়ে থাকতেই পারে না।"
-          </p>
-        </div>
-
-        <h2>🎯 2.05 কীভাবে 0.31 হলো</h2>
-
-        <p>
-          চলো গত পর্বের Epoch 1-এ ফিরি। শুরুর weight <code>W = [-3.0, 2.0, 1.0, 3.0]</code>। প্রথম পালা
-          আবুলের।
-        </p>
-
-        <p>
-          তার sum এসেছিল <strong>−0.25</strong>। 0-এর বাঁ পাশে, তাই neuron বললো A+ নয়। কিন্তু আবুল A+
-          পেয়েছিল। Error = +1, কাজেই আবুলের নিজের update হলো।
-        </p>
-
-        <p>
-          ওই update তার নিজের sum কতটা তুললো? আজকের নিয়মটাই বলে দেবে। শুধু B-এর জায়গায় A বসাও, কারণ
-          update-টা আবুলের নিজেরই।
-        </p>
-
-        <div className="code-box">
-          <pre>{`Δsum_A = Error_A × (X_A · X_A)  =  (+1) × 2.3025  =  +2.3025
-
-নতুন sum_A = -0.25 + 2.3025 = 2.0525`}</pre>
-        </div>
-
-        <p>
-          গত পর্বের পাতায় এই সংখ্যাটাই ছাপা ছিল, একটু গোল করে — <strong>2.05</strong>। আবুল 0-এর ডান
-          পাশে উঠে এলো। উত্তর ঠিক হলো।
-        </p>
-
-        <p>
-          এবার পরের জনের পালা। বাবুলের sum এলো 2.44, neuron বললো A+। কিন্তু বাবুল A+ পায়নি। Error = −1,
-          তার weight update হলো। সেই update আবুলের কাছ থেকে কতটা নিলো?
-        </p>
-
-        <div className="code-box">
-          <pre>{`Δsum_A = Error_B × (X_A · X_B)  =  (-1) × 1.7400  =  -1.7400
-
-নতুন sum_A = 2.0525 - 1.7400 = 0.3125`}</pre>
+        <div className="concept-box">
+          <h3>🆕 উপায় ৩ — নতুন task-এর জন্য আলাদা জায়গা</h3>
+          <ul>
+            <li>নতুন task শেখানোর জন্য কিছু নতুন parameter বা আলাদা অংশ ব্যবহার করা।</li>
+            <li>তাহলে পুরনো শেখা আর নতুন শেখার মধ্যে সংঘর্ষ কম হয়।</li>
+          </ul>
         </div>
 
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
-          <p>
-            "আরে! 0.31 তো গত পর্বের Epoch 2-এর একদম প্রথম লাইনেই লেখা! আমি নিজে পড়েছি, কিন্তু কোথা
-            থেকে এলো কখনো ভাবিনি! 😮"
-          </p>
+          <p>"মানে একই notebook-এ পুরনো লেখার উপর না লিখে নতুন page ব্যবহার করা?"</p>
         </div>
 
         <div className="dialog-box votu">
           <span className="dialog-name">ভতু:</span>
-          <p>
-            "আর বিয়োগটা আন্দাজ নয় রে, হুবহু। Epoch 1-এ আবুল-বাবুলের পরে কাবুল আর দাবুল দুজনেরই Error
-            ছিল 0। ওরা weight-এ হাতই দেয়নি।"
-          </p>
+          <p>"একদম! 😄"</p>
         </div>
 
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "আর 0.31 মাপা হয়েছিল আবুলের Epoch 2-এর পালার শুরুতে, নিজের update-এর আগে। কাজেই ছাপা 2.05
-            আর ছাপা 0.31 — এই দুটোর মাঝখানে হাত দিয়েছে একমাত্র বাবুল।"
-          </p>
-        </div>
-
-        <figure className="figure-box">
-          <svg
-            viewBox="0 0 480 200"
-            role="img"
-            aria-label="আবুলের sum: −0.25 থেকে নিজের update-এ 2.0525, তারপর বাবুলের update-এ 1.7400 কমে 0.3125"
-          >
-            <line x1="50" y1="120" x2="445" y2="120" stroke="#334155" strokeWidth="2" />
-            <line x1="140" y1="36" x2="140" y2="150" stroke="#334155" strokeWidth="1.5" strokeDasharray="4 4" />
-            <text x="140" y="176" textAnchor="middle" fill="#334155" fontSize="13">0 — এখানেই উত্তর বদলায়</text>
-            <circle cx="113" cy="120" r="5" fill="#334155" />
-            <circle cx="366" cy="120" r="5" fill="#f59e0b" />
-            <circle cx="174" cy="120" r="5" fill="#ec4899" />
-            <text x="103" y="143" textAnchor="middle" fill="#334155" fontSize="13">−0.25</text>
-            <text x="366" y="143" textAnchor="middle" fill="#f59e0b" fontSize="13">2.0525</text>
-            <text x="186" y="143" textAnchor="middle" fill="#ec4899" fontSize="13">0.3125</text>
-            <line x1="113" y1="90" x2="366" y2="90" stroke="#f59e0b" strokeWidth="2" />
-            <line x1="366" y1="90" x2="357" y2="85" stroke="#f59e0b" strokeWidth="2" />
-            <line x1="366" y1="90" x2="357" y2="95" stroke="#f59e0b" strokeWidth="2" />
-            <text x="240" y="80" textAnchor="middle" fill="#f59e0b" fontSize="13">আবুলের নিজের update: +2.3025</text>
-            <line x1="366" y1="58" x2="174" y2="58" stroke="#ec4899" strokeWidth="2" />
-            <line x1="174" y1="58" x2="183" y2="53" stroke="#ec4899" strokeWidth="2" />
-            <line x1="174" y1="58" x2="183" y2="63" stroke="#ec4899" strokeWidth="2" />
-            <text x="270" y="48" textAnchor="middle" fill="#ec4899" fontSize="13">বাবুলের update: −1.7400</text>
-          </svg>
-          <figcaption>
-            আবুলের নিজের update তাকে 0-এর ডান পাশে তুলে দিয়েছিল — 2.0525। বাবুলের ঠিক পরের update সেখান
-            থেকে 1.7400 কেড়ে নিলো। রইলো 0.3125। এই এক ধাপে আবুল ডান পাশেই থেকে গেল — কোনোমতে।
-          </figcaption>
-        </figure>
-
-        <div className="dialog-box motu">
-          <span className="dialog-name">মোটু:</span>
-          <p>"তাহলে আমার ভয়টা পুরো ঠিক ছিল না! অনেকটা গেছে ঠিকই, কিন্তু আবুল তো বেঁচেই গেল।"</p>
-        </div>
-
-        <h2>⛔ দাঁড়া — এবার কাবুলের দিকে তাকা</h2>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "আবুল বেঁচেছে দেখে ভাবছিস নড়া মানে বড়জোর একটু কমে যাওয়া? দাঁড়া। কাবুলের দিকে তাকা।"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "Epoch 1-এ কাবুলের sum ছিল 1.7675, উত্তর ঠিক। Epoch 2-এ সেটা −0.4425, উত্তর ভুল। অথচ কাবুল
-            নিজে একটাও ভুল করেনি। বাবুল শিখলো, আর কাবুলের ঠিক উত্তরটা ভেঙে গেল।"
-          </p>
-        </div>
-
-        <p>
-          সংখ্যাটা কোথা থেকে এলো? আজকের নিয়ম দিয়েই বেরিয়ে আসে। Epoch 2-এ বাবুল আবার ভুল করলো, Error =
-          −1। তার update weight-কে নিয়ে গেল <code>W = [-4.0, 2.0, 1.15, 1.40]</code>-এ।
-        </p>
-
-        <div className="code-box">
-          <pre>{`X_C · X_B = (1 × 1) + (0.80 × 0.30) + (0.85 × 0.40) + (0.70 × 0.90)
-          = 1 + 0.24 + 0.34 + 0.63
-          = 2.2100
-
-Δsum_C = (-1) × 2.2100 = -2.2100     →     1.7675 - 2.2100 = -0.4425`}</pre>
-        </div>
-
-        <p>আর <code>-0.44</code> — ঠিক এই সংখ্যাটাই গত পর্বের Epoch 2-এ কাবুলের পাশে ছাপা আছে।</p>
+        <h2>🤯 কিন্তু আরও গভীর একটা সমস্যা আছে</h2>
 
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
           <p>
-            "কিন্তু কাবুল তো চুপচাপ বসে ছিল! তার উত্তর ঠিকই ছিল। আর তবুও ভুল হয়ে গেল?"
+            "আপু, একটা জিনিস বুঝলাম। কিন্তু আমাদের neuron তো ভুল করলে সঙ্গে সঙ্গে weight update করছে।
+            তাহলে কি সবসময় <code>Error = d − y</code> ব্যবহার করলেই হবে?"
           </p>
         </div>
 
         <div className="dialog-box votu">
           <span className="dialog-name">ভতু:</span>
           <p>
-            "হ্যাঁ। আর এখানে আমাকে নিজের কথা নিজেই ফিরিয়ে নিতে হচ্ছে। একটু আগে যে সংজ্ঞাটা দিলাম, সেই
-            হিসাবে এটা আর নড়া নয় — এটা মোছা। কাবুলের sum 0 পেরিয়ে গেছে।"
-          </p>
-        </div>
-
-        <h2>🔄 তাহলে সত্যিই মুছে গেল?</h2>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "তিনটা জিনিস পাশাপাশি রাখ। <strong>এক</strong> — যে নিজের ভুল শোধরাচ্ছে, তার নিজের sum
-            কখনো ভুল দিকে যায় না।"
-          </p>
-        </div>
-
-        <p>
-          কারণ তখন <code>Δsum</code>-এ যে গুণফলটা বসে সেটা <code>X_C · X_C</code> — নিজের সাথে নিজের।
-          আর ওটা শূন্য বা নেগেটিভ হওয়ার কোনো পথই নেই।
-        </p>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "নিজের update নিজেকে কখনো ঠকায় না। এটা তুই দেখেই ফেলেছিস — আবুলের −0.25 থেকে 2.0525-এ
-            ওঠাটা ঠিক এই জিনিস। তবে ঠিক দিকে ঠেলা আর যথেষ্ট ঠেলা এক কথা নয়। এক ধাক্কায় কাজ শেষ হবে,
-            তার কোনো গ্যারান্টি নেই।"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "<strong>দুই</strong> — প্রত্যেকে পরের epoch-এ আবার আসে। এক epoch মানে তো চারজনের উপর দিয়ে
-            একবার ঘুরে আসা। কেউ বাদ যায় না।"
-          </p>
-        </div>
-
-        <p>
-          কাবুলের বেলায় সেটাই হলো। ওই Epoch 2-এই, বাবুলের ঠিক পরেই, কাবুলের নিজের পালা এলো। Error = +1,
-          নিজের update হলো, সে উঠে দাঁড়ালো।
-        </p>
-
-        <p>
-          পরের epoch-গুলোতে তার sum — <code>0.20</code>, <code>0.42</code>, <code>2.85</code>। সে ফিরে
-          এসেছে।
-        </p>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "<strong>তিন</strong> — তাই আমার সংজ্ঞাটা ঠিক করে নিতে হবে। মোছা মানে 0 পেরিয়ে যাওয়া নয়।
-            মোছা মানে 0 পেরিয়ে <strong>ওপারেই থেকে যাওয়া</strong>। কাবুল পেরিয়েছিল, কিন্তু থাকেনি।"
-          </p>
-        </div>
-
-        <div className="dialog-box motu">
-          <span className="dialog-name">মোটু:</span>
-          <p>"তাহলে... নড়ে, কিন্তু মোছে না?"</p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "নিজের ভাষাতেই বলে ফেলেছিস। ওটাই আজকের উত্তর। 🙌 তবে ওর নিচে একটা শর্ত লুকিয়ে আছে। একটু
-            পরেই বলছি।"
-          </p>
-        </div>
-
-        <h2>🐢 কিন্তু ব্যাপারটা মসৃণ ছিল না</h2>
-
-        <div className="dialog-box motu">
-          <span className="dialog-name">মোটু:</span>
-          <p>
-            "দাঁড়াও আপু, একটা জিনিস মিলছে না। গত পর্বের Epoch 3-এ মাত্র একজন ভুল করেছিল, কিন্তু Epoch
-            4-এ দুজন! ভুল তো বেড়ে গেল। তাহলে কি মাঝখানে পিছিয়ে যাচ্ছিল?"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "বাহ, চোখ আছে তোর! হ্যাঁ, বেড়েছিল। আর আমি সেটা লুকাবো না। 😄 প্রতি epoch-এ কতজন ভুল করেছে
-            গুনে দেখ — 2, 2, 1, 2, 1, 0।"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "Epoch 4 তার আগেরটার চেয়ে খারাপ ছিল। আবুল Epoch 2 আর 3-এ ঠিক ছিল, তারপর Epoch 4-এ তার sum
-            −0.74 — আবার ভুল। বাবুল তো টানা চারটা epoch ভুল করে গেছে।"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "কেন তবু থেমেছিল, সেটা বলার আগে একটা কথা স্বীকার করে নিই। আমি ধরে নিচ্ছি — আর আজ শুধু ধরেই
-            নিচ্ছি, প্রমাণ করছি না — যে চারজনকে একসাথে খুশি করে এমন একটা W আছে।"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "শর্তটার একটা নাম আছে — <strong>linear separability</strong>। মানে এমন একটা W পাওয়া যায়
-            কিনা, যেটা A+ পাওয়া আর না-পাওয়া দুই দলকে পরিষ্কার আলাদা করে দিতে পারে। এমন data-ও আছে
-            যেখানে ওটা খাটে না — আর তখন neuron কোনোদিন থামে না। ওই গল্পটা পুরো একটা পর্ব চায়।"
-          </p>
-        </div>
-
-        <div className="dialog-box motu">
-          <span className="dialog-name">মোটু:</span>
-          <p>"ঠিক আছে, ধরে নিলাম। কিন্তু ভুল যখন বাড়ছিল, তখনো কি ওই W-এর দিকেই যাচ্ছিল? থামলো কীভাবে?"</p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "ওটা ধরে নিলে বাকিটা এভাবে দাঁড়ায় — আমাদের চারজনের data-য় প্রতিটা কারেকশন ওই W-এর দিকে এক
-            ধাপ করে এগোয়। আর যেখানে দুজন উল্টো দিকে ঠেলছে, সেই দুই ধাক্কা অনেকটা কাটাকাটি হয়ে যায়।"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "w₀-এর কথাই ধর। −3.0 থেকে −2.0, তারপর আবার −3.0। পুরো ঘুরে এসে যেখানকার সেখানে। এই এদিক-ওদিক
-            দোলাটা সত্যি, আর যতক্ষণ কেউ না কেউ ভুল করছে ততক্ষণ এটা থামে না।"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "কিন্তু যেটুকুতে চারজনের কারো আপত্তি নেই, সেটুকু কাটে না — সেটুকু প্রতি epoch-এ জমে। w₁, w₂,
-            w₃ কিন্তু ফেরেনি, খেয়াল করেছিস? ওই জমা অংশটাই শেষে দোলাটাকে ছাড়িয়ে যায়।"
-          </p>
-        </div>
-
-        <div className="dialog-box motu">
-          <span className="dialog-name">মোটু:</span>
-          <p>"ওহ! তাই ওটা ঝাঁকুনি খেতে খেতে থেমেছিল, মসৃণভাবে নয়। ৬টা epoch লেগেছিল।"</p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "আর হ্যাঁ — গত পর্বে বলেছিলাম তোর প্রশ্নটা নিয়ে আজও গবেষকরা মাথা ঘামান। কথাটা ফাঁকা ছিল না।
-            ওটার একটা নাম আছে, <strong>catastrophic forgetting</strong>।"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "তবে ওখানে বিপদটা অন্য জায়গায়। নতুনটা শেখানোর সময় পুরনো উদাহরণগুলো আর হাতের কাছে থাকে না,
-            ফেরার সুযোগই নেই। আমাদের চারজন প্রতি epoch-এ ফিরে আসে — তাই আমাদেরটা মিটে যায়। এটা আজকের
-            বিষয় নয়।"
-          </p>
-        </div>
-
-        <h2>🎚️ নিয়মটার ভেতরে একটা লুকানো গুণক ছিল</h2>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "এবার একটা কথা বলি, যেটা গত পর্বে চেপে গিয়েছিলাম। update নিয়মটার ভেতরে একটা গুণক নিঃশব্দে
-            বসে ছিল। তার মান আমরা ধরে নিয়েছিলাম 1। নাম <strong>learning rate</strong>, চিহ্ন η।"
+            "না। এখানেই গল্পটা আরও বড় হয়ে যায়। আমাদের এই neuron-টা খুবই সরল। এটা শুধু 0 বা 1 output
+            দেয়। আর weight update-ও খুব সোজা —"
           </p>
         </div>
 
         <div className="formula-box">
-          <p>W<sub>new</sub> = W + η · Error × X</p>
-        </div>
-
-        <p>
-          η = 1 বসালে গত পর্বের নিয়মটা হুবহু ফিরে আসে। কাজেই আমরা মিথ্যে কিছু কষিনি, শুধু একটা 1
-          লিখিনি।
-        </p>
-
-        <p>
-          আর η যেহেতু গোটা <code>ΔW</code>-কে গুণ করে, আজকের নিয়মটার ভেতরেও ঢুকে পড়ে —
-        </p>
-
-        <div className="formula-box">
-          <p>Δsum<sub>A</sub> = η · Error<sub>B</sub> · (X<sub>A</sub> · X<sub>B</sub>)</p>
+          <p>W<sub>new</sub> = W + Error × X</p>
         </div>
 
         <div className="dialog-box votu">
           <span className="dialog-name">ভতু:</span>
           <p>
-            "খেয়াল কর, η শুধু মাপটা বদলায়, দিকটা নয়। দিক তো Error-এর হাতে। চল, আবুলের সেই Epoch 1-এর
-            ধাপটাই η = 0.5 দিয়ে কষি।"
+            "কিন্তু বড় neural network-এ অনেক layer থাকে, অনেক neuron থাকে, আর parameter থাকে প্রচুর।
+            সেখানে শুধু একটা neuron-এর weight একটু বাড়িয়ে বা কমিয়ে দিলেই কাজ হয় না।"
           </p>
-        </div>
-
-        <div className="code-box">
-          <pre>{`W = [-3.0, 2.0, 1.0, 3.0],  sum_A = -0.25,  Error_A = +1,  η = 0.5
-
-ΔW    = 0.5 × [1, 0.60, 0.95, 0.20] = [0.50, 0.30, 0.475, 0.10]
-W_new = [-2.50, 2.30, 1.475, 3.10]
-
-sum_A = (-2.50×1) + (2.30×0.60) + (1.475×0.95) + (3.10×0.20)
-      = -2.50 + 1.38 + 1.40125 + 0.62
-      = 0.90125        >  0   ⟹   y = 1 ✅`}</pre>
         </div>
 
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
-          <p>
-            "দাঁড়াও, আমি একটু ছোট পথে মিলিয়ে দেখি — <code>−0.25 + 0.5 × 2.3025 = 0.90125</code>। মিলে
-            গেল! মানে তোমার নিয়মটা η বসানোর পরেও কাজ করছে। 😄"
-          </p>
+          <p>"তাহলে?"</p>
         </div>
 
         <div className="dialog-box votu">
           <span className="dialog-name">ভতু:</span>
           <p>
-            "চমৎকার। এবার দ্বিতীয় হিসাবটা — আর এটাই আসল, কারণ এটা দুজনের মাঝের হিসাব। η = 0.5 হলে
-            বাবুলের update আবুলের কাছ থেকে কত নিতো?"
+            "তখন জানতে হয় — <strong>কোন weight কতটা বদলাবে?</strong> একটু বেশি বদলালে training অস্থির
+            হতে পারে। আবার খুব কম বদলালে শেখা খুব ধীরে হয়। আর সেখান থেকেই আসে{' '}
+            <strong>learning rate</strong>, <strong>gradient</strong>,{' '}
+            <strong>gradient descent</strong>, <strong>backpropagation</strong>-এর মতো জিনিস।"
           </p>
         </div>
-
-        <div className="code-box">
-          <pre>{`Δsum_A = η × Error_B × (X_A · X_B)  =  0.5 × (-1) × 1.7400  =  -0.8700`}</pre>
-        </div>
-
-        <p>1.7400 নয়, <strong>0.8700</strong>। ঠিক অর্ধেক।</p>
-
-        <h2>❗ তাহলে η ছোট করে দিলেই তো হয়?</h2>
 
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
-          <p>
-            "আরে! তাহলে তো কাজ শেষ! η ছোট করলেই বাবুল আবুলের অনেক কম ক্ষতি করতে পারবে — 1.7400-এর
-            জায়গায় 0.8700। আরও ছোট করলে আরও কম। মানে η ছোট রাখলেই আবুলের শেখাটা নিরাপদ, তাই না?"
-          </p>
+          <p>"ওহ! 😳"</p>
         </div>
 
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "যুক্তিটা এত সুন্দর যে ভুলটা সবচেয়ে বেশি এখানেই হয়। আমিও একসময় এটাই ভাবতাম।"
-          </p>
+        <h2>🚦 আজকের গল্পের আসল শিক্ষা</h2>
+
+        <p>মোটু এবার নিজের খাতায় লিখতে শুরু করলো।</p>
+
+        <div className="concept-box">
+          <h3>🧠 Neuron-এর memory আসলে কোথায়?</h3>
+          <ul>
+            <li>Neuron-এর আলাদা কোনো খাতা নেই।</li>
+            <li>তার শেখা পুরোটাই তার <strong>weights</strong>-এর মধ্যে encoded থাকে।</li>
+          </ul>
         </div>
 
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "কিন্তু η তো শুধু বাবুলের হাতটা ছোট করে না রে। আবুলের নিজের হাতটাও ঠিক একইভাবে ছোট করে।
-            দুটোই তো একই নিয়ম — <code>η · Error · (X · X)</code>। চল, দুটো Epoch 1 পাশাপাশি লিখি।"
-          </p>
+        <div className="concept-box">
+          <h3>🔄 Weight বদলালে কী হয়?</h3>
+          <ul>
+            <li>Weight বদলালে neuron-এর decision boundary বদলে যায়।</li>
+            <li>তাই নতুন data শেখার সময় পুরনো data-র prediction-ও বদলে যেতে পারে।</li>
+            <li>হ্যাঁ — পুরনো কোনো example-এর উত্তর ভুল হয়ে যেতে পারে।</li>
+          </ul>
         </div>
 
-        <div className="code-box">
-          <pre>{`η = 1.0 :   -0.25 + 2.30250 = 2.05250 ,   2.05250 - 1.74000 = 0.31250
-η = 0.5 :   -0.25 + 1.15125 = 0.90125 ,   0.90125 - 0.87000 = 0.03125`}</pre>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "দুবারই আবুল বেঁচে গেছে, 0-এর ডান পাশেই আছে। কিন্তু কোথায় দাঁড়িয়ে আছে দেখ। η = 1-এ 0.3125-এ,
-            আর η = 0.5-এ 0.03125-এ — 0 পেরিয়ে যাওয়ার দশ গুণ বেশি কাছে।"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "ছোট η আবুলের শেখাটা বাঁচায়নি রে। উল্টো তাকে আরও নাজুক করে রেখে গেছে। আর এটা কাকতালীয় নয়,
-            এর একটা সাধারণ চেহারা আছে। একটা কথা ভাব — neuron সিদ্ধান্তটা নেয় কী দেখে?"
-          </p>
-        </div>
-
-        <p>
-          <code>y</code> ঠিক হয় sum-টা 0-এর কোন পাশে পড়লো তার উপর। মানে সংখ্যাটার{' '}
-          <strong>সাইন</strong> দিয়ে, তার মাপ দিয়ে নয়।
-        </p>
-
-        <p>
-          এখন ধরো সব weight অর্ধেক করে দিলাম। তাহলে প্রত্যেকের sum-ও অর্ধেক হয়ে যাবে। কিন্তু কারো সাইন
-          বদলাবে না। পজিটিভ পজিটিভই থাকবে, নেগেটিভ নেগেটিভই।
-        </p>
-
-        <div className="code-box">
-          <pre>{`সাইন বদলায় না   →  y বদলায় না
-y বদলায় না       →  Error বদলায় না
-Error বদলায় না   →  কোন update হবে, কার হবে — একটাও বদলায় না`}</pre>
+        <div className="concept-box">
+          <h3>🔁 তাহলে কী করি?</h3>
+          <ul>
+            <li>পুরো dataset-এর উপর বারবার training চালাই।</li>
+            <li>পুরনো example আবার আসে, ভুল হলে আবার weight update হয়।</li>
+            <li>সবাই ঠিক classified হলে আমরা convergence পাই।</li>
+          </ul>
         </div>
 
         <p className="note-text">
-          (এই যুক্তিটা তখনই খাটে যখন শুরুর W-টাকেও একই সাথে ছোট করি। না হলে আমাদের আন্দাজ করা W আর
-          data-র কারেকশন, এই দুটো দুই মাপে থেকে যায়।)
+          (আর catastrophic forgetting আরও বড় সমস্যা — বিশেষ করে sequential বা continual learning-এ,
+          যেখানে নতুন task শেখার ফলে পুরনো task-এর শেখা ব্যাপকভাবে হারিয়ে যেতে পারে।)
         </p>
 
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "আর এবার আসল কথাটা। আমাদের শুরুর <code>W = [-3.0, 2.0, 1.0, 3.0]</code> কিন্তু data থেকে
-            আসেনি। ওটা আমাদের নিজের আন্দাজ। আর η ওটাকে ছোঁয়ই না।"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "η শুধু data-র কারেকশনগুলোকে ছোট করে। কাজেই ছোট η আসলে{' '}
-            <strong>আমাদের আন্দাজটাকেই</strong> বেশিদিন ক্ষমতায় রাখে — আবুলের শেখাকে নয়।"
-          </p>
-        </div>
-
-        <h2>⚖️ ÷100 কি তাহলে η ছোট করারই আরেক রূপ?</h2>
-
-        <div className="dialog-box motu">
-          <span className="dialog-name">মোটু:</span>
-          <p>
-            "আচ্ছা আপু, একটা কথা মাথায় এলো। গত পর্বে আমরা সব data 100 দিয়ে ভাগ করেছিলাম। সেটাও তো সব
-            সংখ্যা ছোট করে দিয়েছিল। ওটাও কি তাহলে η ছোট করারই আরেক রূপ?"
-          </p>
-        </div>
-
-        <p>নিয়মটা আরেকবার দেখো, এবার অন্য চোখে —</p>
+        <h2>🎓 আজকের গল্পটা এক লাইনে</h2>
 
         <div className="formula-box">
-          <p>ΔW = η · Error × X</p>
-        </div>
-
-        <p>
-          Error তো মাত্র তিনটা মান নিতে পারে — −1, 0, বা +1। কাজেই এক ধাপের মাপ ঠিক করে বাকি দুটো
-          জিনিস — η, আর <code>X</code>-এর মাপ।
-        </p>
-
-        <p>
-          তার মানে ÷100 শুধু সাজিয়ে-গুছিয়ে রাখার ব্যাপার ছিল না। ওটাই ঠিক করে দিয়েছিল প্রতিটা update কত
-          জোরে লাগবে।
-        </p>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "কিন্তু না, দুটো এক জিনিস নয়। আর পার্থক্যটা একটামাত্র ঘরে। x₀ কখনো 100 দিয়ে ভাগ হয়নি। আমরা
-            ভাগ করেছিলাম শুধু x₁, x₂, x₃-কে।"
-          </p>
-        </div>
-
-        <div className="dialog-box votu">
-          <span className="dialog-name">ভতু:</span>
-          <p>
-            "তাই ÷100 তিনটা feature-এর ধাপ 100 গুণ ছোট করেছে, আর bias-এর ধাপ রেখে দিয়েছে ঠিক ±η-তেই।
-            কেন, দেখ — bias-এর x₀ তো সবসময় 1, আর যখনই কারো ভুল হয় তখন Error হয় ঠিক ±1। কাজেই{' '}
-            <code>η · Error × x₀</code> মানে <code>η × (±1) × 1</code>।"
-          </p>
+          <p>Neuron-এর শেখা weight-এর মধ্যে থাকে।</p>
+          <p>Weight বদলালে পুরনো শেখার উপরও প্রভাব পড়ে।</p>
         </div>
 
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
-          <p>"ওহ! তাহলে এটা মাথায় রাখলে আমি আগেভাগেই একটা জিনিস বলে দিতে পারবো?"</p>
+          <p>"মানে neuron-এর memory খুব অদ্ভুত!"</p>
+        </div>
+
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>"কেন?"</p>
+        </div>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>"ওর memory-তে নতুন কিছু ঢোকাতে গেলে পুরনো memory-ও একটু নড়েচড়ে বসে!"</p>
         </div>
 
         <div className="dialog-box votu">
           <span className="dialog-name">ভতু:</span>
           <p>
-            "পারবি। আসল 0–100 নিয়ে কাজ করলে feature-এর ধাপ এত বড় হয়ে যেত যে bias আর পাল্লাই দিতে
-            পারতো না। কারণ bias-এর ধাপ তখনো থাকতো ±η-তেই। সংখ্যা শুধু বড় হয় না — ব্যালেন্সটাই ভেঙে যায়।"
+            "হাহা! ঠিক তাই। 😄 আর এই কারণেই machine learning-এ শুধু 'কীভাবে শেখাবো' জানলেই হয় না।
+            ভাবতে হয় — যা শিখেছে, সেটা কীভাবে ধরে রাখবে?"
+          </p>
+        </div>
+
+        <p>মোটু কিছুক্ষণ চুপ করে রইলো। তারপর বললো —</p>
+
+        <div className="dialog-box motu">
+          <span className="dialog-name">মোটু:</span>
+          <p>
+            "আচ্ছা আপু... neuron তো ভুল করলে weight বদলায়। কিন্তু যদি আমরা weight-টা একবারে অনেকটা না
+            বদলে একটু একটু করে বদলাই?"
           </p>
         </div>
 
         <div className="dialog-box votu">
           <span className="dialog-name">ভতু:</span>
           <p>
-            "আর scale মেলানোর পুরো গল্পটা আমি এখনো দিইনি, দুবার প্রতিশ্রুতি দিয়েও দিইনি। ওটা আমার ঋণ,
-            আর ওটা আমি শোধ করবো।"
-          </p>
-        </div>
-
-        <p>মোটু একটু চুপ করে থেকে নিজের মতো করে গুছিয়ে বললো —</p>
-
-        <div className="dialog-box motu">
-          <span className="dialog-name">মোটু:</span>
-          <p>
-            "তাহলে আজ থেকে আমি তিনটা নতুন কাজ পারি। এক — দুজনের feature দেখেই বলে দিতে পারি, একজনের
-            update আরেকজনের sum কতটা নাড়াবে, আর কোন দিকে।"
+            "(চোখ বড় করে) ওহ! এবার তুই ঠিক এমন একটা প্রশ্ন করলি, যেটা আমাদের নিয়ে যাবে{' '}
+            <strong>learning rate</strong>-এর কাছে!"
           </p>
         </div>
 
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
-          <p>
-            "দুই — কেউ এখন ঠিক উত্তর দিচ্ছে দেখেই নিশ্চিন্ত হবো না। পরের জনের শেখাটা তাকে 0-এর ওপারে
-            পাঠিয়ে দিতে পারে, কাবুলের মতো। আর তিন — মাঝপথে ভুল বেড়ে গেলে আর ভাববো না সব ভেঙে পড়ছে।
-            যেটুকুতে সবাই একমত সেটুকু তো জমছেই।"
-          </p>
+          <p>"মানে weight কতটা বদলাবে — সেটাও ঠিক করে দিতে হয়?"</p>
         </div>
 
-        <h2>🧩 তাহলে ওই 0-টা কী জিনিস?</h2>
-
-        <div className="dialog-box motu">
-          <span className="dialog-name">মোটু:</span>
-          <p>
-            "আপু, তুমি একটু আগে বললে — চারজনের সবার জন্য কাজ করে এমন একটা W আছে, ধরে নিলে। কিন্তু একটা
-            W 'কাজ করে' মানে তো — আবুলেরটা 0-এর ডানে পড়বে, বাবুলেরটা বাঁয়ে।"
-          </p>
+        <div className="dialog-box votu">
+          <span className="dialog-name">ভতু:</span>
+          <p>"হ্যাঁ। কারণ বেশি জোরে শিখতে গেলে সমস্যা, আবার খুব আস্তে শিখলেও সমস্যা।"</p>
         </div>
 
         <div className="dialog-box motu">
           <span className="dialog-name">মোটু:</span>
-          <p>
-            "সারাক্ষণ আমরা ওই 0-টা নিয়েই ঘুরছি। ওটা তাহলে কোথাও একটা সীমানা, তাই না? আর যে চারটা সংখ্যায়
-            গিয়ে neuron থেমেছিল — ওরা আসলে কাগজে কী আঁকছে?"
-          </p>
+          <p>"তাহলে পরের পর্বে neuron কতটা করে শেখে — সেটা?"</p>
         </div>
 
         <div className="dialog-box votu">
           <span className="dialog-name">ভতু:</span>
           <p>
-            "(ভতু হেসে ফেললো।) এক পর্বের ধার শোধ করলাম, আর তুই সাথে সাথে আরেকটা পর্ব চেয়ে বসলি! ওই
-            সীমানাটার নামও আছে — <strong>decision boundary</strong>। ওটা নিয়েই পরের পর্ব।"
+            "ঠিক তাই। এবার দেখবি, neuron-কে শুধু <strong>কোন দিকে</strong> যেতে হবে বললেই হয় না —{' '}
+            <strong>কতটা দূর</strong> যেতে হবে, সেটাও জানতে হয়।"
           </p>
         </div>
 
         <p className="highlight-text">
-          পরের পর্বে দেখবো এই <strong>decision boundary</strong> জিনিসটা কী — একটা W "কাজ করে" মানে ঠিক
-          কী, আর চারটা সংখ্যা কাগজে কোন দাগটা টেনে দেয়! 🚀
+          পরের পর্বে তাই দেখবো — neuron কতটা করে শেখে? Error হলো, কিন্তু weight ঠিক কতটা বদলাবো? সেই
+          learning rate η কোথা থেকে এলো, খুব বড় হলে কী হয়, খুব ছোট হলে কেন শেখা ধীর হয়ে যায় — আর শেষ
+          পর্যন্ত gradient descent আসলে কী করতে চায়! 🚀
         </p>
       </article>
     </>
