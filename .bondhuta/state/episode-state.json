@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "site": {
+    "repo": "soumit-kaz/bondhuta",
+    "baseUrl": "https://bondhuta.vercel.app",
+    "branch": "main"
+  },
+  "activeSeries": "neural-network",
+  "series": {
+    "neural-network": {
+      "title": "Neural Network সিরিজ",
+      "teacher": "ভতু",
+      "dialogClasses": ["motu", "votu"],
+      "plannedEpisodes": 12,
+      "published": [
+        {
+          "n": 1,
+          "slug": "intro",
+          "route": "/neural-network/intro",
+          "component": "NeuralNetworkIntro",
+          "file": "src/pages/neural-network/NeuralNetworkIntro.tsx",
+          "title": "একটা Neuron-এর গল্প",
+          "date": "2026-06-02",
+          "commit": "728180d",
+          "linkedin": null,
+          "lines": 180,
+          "scores": { "overall": null }
+        },
+        {
+          "n": 2,
+          "slug": "learning",
+          "route": "/neural-network/learning",
+          "component": "NeuralNetworkLearning",
+          "file": "src/pages/neural-network/NeuralNetworkLearning.tsx",
+          "title": "পর্ব ২: Neuron যেভাবে নিজে নিজে শেখে",
+          "date": "2026-06-05",
+          "commit": "29d8326",
+          "linkedin": null,
+          "lines": 843,
+          "scores": { "overall": null }
+        },
+        {
+          "n": 3,
+          "slug": "interference",
+          "route": "/neural-network/interference",
+          "component": "NeuralNetworkInterference",
+          "file": "src/pages/neural-network/NeuralNetworkInterference.tsx",
+          "title": "পর্ব ৩: পুরনো শেখা কি মুছে যায়?",
+          "sidebarId": "nn-interference",
+          "date": "2026-09-09",
+          "commit": null,
+          "linkedin": "LinkedinPost/003-interference.md",
+          "lines": 601,
+          "scores": {
+            "overall": 93.0,
+            "technical": 97,
+            "depth": 91,
+            "clarity": 95,
+            "bangla": 96,
+            "narrative": 89,
+            "continuity": 94,
+            "humour": 87,
+            "originality": 83
+          }
+        }
+      ],
+      "nextEpisode": 4
+    }
+  },
+  "lastRun": {
+    "date": "2026-09-09",
+    "episode": 3,
+    "status": "published",
+    "iterations": { "L1": 1, "L2": 2, "L3": 3, "L4": 1, "L5": 1, "L6": 2 },
+    "agentDispatches": 24,
+    "notes": "Bootstrap ran in the same session (.bondhuta/ did not exist). L3 exhausted at its 3-iteration cap with one surviving F01; the user authorised a two-string repair, after which the gate passed at 93.00. L4 exhausted at 601 lines against a 480-560 blueprint band - the compression editor judged 601 to be the episode's natural length rather than padding, with no filler found by grep and every remaining candidate protected by a reviewer. L5 passed first try, no build-doctor needed."
+  }
+}
