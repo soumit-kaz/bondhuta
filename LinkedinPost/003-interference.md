@@ -25,7 +25,7 @@ Halving the learning rate made this score ten times more fragile.
 
 The standard advice: lower your learning rate and old learning survives new updates better. It sounds obviously true.
 
-Train a single neuron on two examples in sequence. At η = 1, the first example's score ends at 0.3125 — barely on the right side of zero. Drop η to 0.5, expecting more protection, and it ends at 0.03125. Ten times closer to flipping sign. η only scales the correction from data; it never touches the weights you started with.
+Train a perceptron on two examples in sequence. At η = 1, the first example's score ends at 0.3125 — barely on the right side of zero. Drop η to 0.5, expecting more protection, and it ends at 0.03125. Ten times closer to flipping sign. η only scales the correction from data; it never touches the weights you started with.
 
 So a smaller η doesn't protect what the model has learned — it protects your initial guess, for longer.
 

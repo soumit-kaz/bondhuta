@@ -10,7 +10,10 @@
     "neural-network": {
       "title": "Neural Network সিরিজ",
       "teacher": "ভতু",
-      "dialogClasses": ["motu", "votu"],
+      "dialogClasses": [
+        "motu",
+        "votu"
+      ],
       "plannedEpisodes": 12,
       "published": [
         {
@@ -24,7 +27,9 @@
           "commit": "728180d",
           "linkedin": null,
           "lines": 180,
-          "scores": { "overall": null }
+          "scores": {
+            "overall": null
+          }
         },
         {
           "n": 2,
@@ -37,7 +42,9 @@
           "commit": "29d8326",
           "linkedin": null,
           "lines": 843,
-          "scores": { "overall": null }
+          "scores": {
+            "overall": null
+          }
         },
         {
           "n": 3,
@@ -50,7 +57,7 @@
           "date": "2026-09-09",
           "commit": "7d1a9f0",
           "linkedin": "LinkedinPost/003-interference.md",
-          "lines": 601,
+          "lines": 790,
           "scores": {
             "overall": 93.0,
             "technical": 97,
@@ -71,8 +78,15 @@
     "date": "2026-09-09",
     "episode": 3,
     "status": "published",
-    "iterations": { "L1": 1, "L2": 2, "L3": 3, "L4": 1, "L5": 1, "L6": 2 },
+    "iterations": {
+      "L1": 1,
+      "L2": 2,
+      "L3": 3,
+      "L4": 1,
+      "L5": 1,
+      "L6": 2
+    },
     "agentDispatches": 24,
-    "notes": "Bootstrap ran in the same session (.bondhuta/ did not exist). L3 exhausted at its 3-iteration cap with one surviving F01; the user authorised a two-string repair, after which the gate passed at 93.00. L4 exhausted at 601 lines against a 480-560 blueprint band - the compression editor judged 601 to be the episode's natural length rather than padding, with no filler found by grep and every remaining candidate protected by a reviewer. L5 passed first try, no build-doctor needed."
+    "notes": "Bootstrap ran in the same session (.bondhuta/ did not exist). L3 exhausted at its 3-iteration cap with one surviving F01; the user authorised a two-string repair, after which the gate passed at 93.00. L4 exhausted at 601 lines against a 480-560 blueprint band - the compression editor judged 601 to be the episode's natural length rather than padding, with no filler found by grep and every remaining candidate protected by a reviewer. L5 passed first try, no build-doctor needed. REVISED 2026-09-09 after author review: he judged the Bangla stiff versus his hand-written episode 1. Rewritten directly by the orchestrator in episode 1 voice — Banglish in Bangla script (পজিটিভ/নেগেটিভ/ব্যালেন্স/গ্যারান্টি/কারেকশন) instead of Sanskritized textbook Bangla, dialogue boxes cut from 12 lines to 9 max, more তুমি-address, and মোটুর opening w0 beat flipped from complacent to alarmed. Author also ruled that real ML terminology MUST be named rather than withheld for later episodes, so interference, perceptron learning rule, online learning, linear separability and decision boundary are now all named on the page. Ruling recorded in series/voice.md; it overrides F14 and the must-not-teach-yet list."
   }
 }

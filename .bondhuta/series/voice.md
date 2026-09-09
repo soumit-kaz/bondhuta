@@ -236,3 +236,63 @@ W = [-3.0, 2.0, 1.0, 3.0], আর ৬টা epoch-এর প্রতিটা �
    "মোটু একজন নুব ডেভেলপার", "কনটেইনার", "ডাউনলোড করো" — Bangla script-এ
    transliterated technical terms। **Neural Network সিরিজে এটা সম্পূর্ণ অনুপস্থিত**
    এবং আইনবিরুদ্ধ। `MainContent.tsx` কোনো ভাষা-মডেল নয়।
+
+---
+
+# ⚠️ USER RULING — 2026-09-09 — overrides the plugin's language law
+
+The blog's author read পর্ব ৩ against পর্ব ১ (which he hand-wrote) and ruled পর্ব ৩'s
+Bangla **stiff, boring and weird**. This section is his correction. Where it conflicts
+with `reference/voice-and-characters.md` §2 or hard failure **F14**, **this wins.**
+
+## What went wrong, measured
+
+| | পর্ব ১ (author's own) | পর্ব ৩ (pipeline) |
+|---|---|---|
+| longest `dialog-box` | 7 lines | 12 lines |
+| ধনাত্মক / ঋণাত্মক / ভগ্নাংশ / নিশ্চয়তা / ভারসাম্য / কাকতালীয় / সংশোধন / পরিমাণে / প্রত্যেকেই / স্বীকার / সূত্র / গুণক | **0** | **27** |
+| তুমি-address to reader (ধরো, চলো, দেখো, খেয়াল করো) | 6 | 2 |
+
+## The ruling
+
+**Banglish in Bangla script is correct and wanted.** When a Bangladeshi engineer would
+say an English word in a Bangla sentence, write it **in Bangla script** — do not
+substitute a Sanskritized Bangla word for it.
+
+The old F14 was written to stop `neuron` becoming `নিউরন`. That part still holds. But it
+had an unintended effect: with Banglish forbidden, the writer reached for **textbook
+Bangla** instead, which is far worse than either option.
+
+### Three buckets, not two
+
+1. **Terms of art -> stay in Latin.** `neuron`, `weight`, `bias`, `epoch`, `learning rate`,
+   `dot product`, `matrix`, `threshold`, `input`, `output`, `data`, `feature`, `update`,
+   `Error`. Unchanged — পর্ব ১ does exactly this. The reader googles these.
+2. **Everyday English words Bangla speakers actually say -> Bangla script.** (new)
+
+   | write this | not this |
+   |---|---|
+   | পজিটিভ / নেগেটিভ | ধনাত্মক / ঋণাত্মক |
+   | ব্যালেন্স | ভারসাম্য |
+   | গ্যারান্টি | নিশ্চয়তা |
+   | কারেকশন | সংশোধন |
+   | ফ্র্যাকশন | ভগ্নাংশ |
+   | রুল / নিয়ম | সূত্র (when it means "the rule") |
+
+3. **Ordinary Bangla stays Bangla.** গুরুত্বপূর্ণ, উদাহরণ, ভুল, ঠিক, জিনিস, ব্যাপার.
+
+### Sentence and paragraph law, from পর্ব ১
+
+- **Short sentences.** পর্ব ১ averages well under 20 words. Break anything longer.
+- **One idea per paragraph**, then white space. Do not stack three ideas in a `<p>`.
+- **Dialogue boxes stay 1-4 lines.** A 12-line ভতু box is a lecture, not a conversation.
+  If ভতু has three things to say, she says one, মোটু reacts, then she says the next.
+- **Address the reader as তুমি** and use it often — ধরো, চলো, দেখো, খেয়াল করো, ভাবো.
+- **Verbs over nouns.** "সাহায্য করা আর যথেষ্ট সাহায্য করা এক কথা নয়" is nominalized
+  and dead. "ঠিক দিকে ঠেলে, কিন্তু এক ধাক্কায় কাজ শেষ হয় না" is alive.
+- Never a semicolon. Never সাধু. Em dash for the beat before a reveal.
+
+### The test
+Read the sentence aloud. If you would not say it to a junior at a tea stall, it is wrong —
+**even if it is grammatically perfect and even if every technical term is correctly in
+Latin.** পর্ব ১ is the reference recording. When in doubt, open it and match its sound.
